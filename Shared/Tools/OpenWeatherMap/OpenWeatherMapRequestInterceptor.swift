@@ -21,6 +21,8 @@ struct OpenWeatherMapRequestInterceptor: RequestInterceptorProtocol {
             var components = URLComponents(string: urlString)
         else { return urlRequest }
     
+        components.queryItems?.append(.init(name: "appid", value: apiKey))
+
         var urlRequest = urlRequest
         urlRequest.url = components.url
         return urlRequest
