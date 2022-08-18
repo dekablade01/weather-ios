@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct KrungsriAssignmentApp: App {
+    
+    private let environment = Environment()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                CityWeatherView(cityName: "Bangkok")
+            }
         }
     }
 }

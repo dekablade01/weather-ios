@@ -10,7 +10,7 @@
 		9E9CBC4A28AE745E00852A0C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC4928AE745E00852A0C /* Tests_iOS.swift */; };
 		9E9CBC4C28AE745E00852A0C /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC4B28AE745E00852A0C /* Tests_iOSLaunchTests.swift */; };
 		9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */; };
-		9E9CBC5B28AE745E00852A0C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3228AE745D00852A0C /* ContentView.swift */; };
+		9E9CBC5B28AE745E00852A0C /* CityWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3228AE745D00852A0C /* CityWeatherView.swift */; };
 		9E9CBC5D28AE745E00852A0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3328AE745D00852A0C /* Assets.xcassets */; };
 		9E9CBC6F28AE76CD00852A0C /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC6E28AE76CD00852A0C /* HTTPClient.swift */; };
 		9E9CBC7228AE76DB00852A0C /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC7128AE76DB00852A0C /* HTTPClientProtocol.swift */; };
@@ -26,6 +26,9 @@
 		9E9CBC8F28AE89D500852A0C /* HTTPParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */; };
 		9E9CBC9128AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9028AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift */; };
 		9E9CBC9328AE925700852A0C /* RequestInterceptorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9228AE925700852A0C /* RequestInterceptorProtocol.swift */; };
+		9E9CBC9728AE930500852A0C /* KrungsriAssignmentAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */; };
+		9E9CBC9A28AE987B00852A0C /* WeatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */; };
+		9E9CBC9C28AECFA800852A0C /* WeatherCardViewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrungsriAssignmentApp.swift; sourceTree = "<group>"; };
-		9E9CBC3228AE745D00852A0C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9E9CBC3228AE745D00852A0C /* CityWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherView.swift; sourceTree = "<group>"; };
 		9E9CBC3328AE745D00852A0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E9CBC3828AE745E00852A0C /* KrungsriAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrungsriAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBC4028AE745E00852A0C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
@@ -61,6 +64,9 @@
 		9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPParameters.swift; sourceTree = "<group>"; };
 		9E9CBC9028AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapRequestInterceptor.swift; sourceTree = "<group>"; };
 		9E9CBC9228AE925700852A0C /* RequestInterceptorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptorProtocol.swift; sourceTree = "<group>"; };
+		9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrungsriAssignmentAppViewModel.swift; sourceTree = "<group>"; };
+		9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardView.swift; sourceTree = "<group>"; };
+		9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardViewItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +100,9 @@
 		9E9CBC3028AE745D00852A0C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9E9CBC3228AE745D00852A0C /* ContentView.swift */,
+				9E9CBC9828AE986800852A0C /* CityWeatherView */,
 				9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */,
+				9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */,
 				9E9CBC3328AE745D00852A0C /* Assets.xcassets */,
 				9E9CBC7528AE78CC00852A0C /* Protocols */,
 				9E9CBC6D28AE76BD00852A0C /* Tools */,
@@ -195,6 +202,16 @@
 				9E9CBC8B28AE887500852A0C /* Location.swift */,
 			);
 			path = OpenWeatherMapResponses;
+			sourceTree = "<group>";
+		};
+		9E9CBC9828AE986800852A0C /* CityWeatherView */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC3228AE745D00852A0C /* CityWeatherView.swift */,
+				9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */,
+				9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */,
+			);
+			path = CityWeatherView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,12 +315,15 @@
 			files = (
 				9E9CBC7928AE78ED00852A0C /* URLRequestConvertible.swift in Sources */,
 				9E9CBC8128AE815D00852A0C /* URLConvertible.swift in Sources */,
+				9E9CBC9728AE930500852A0C /* KrungsriAssignmentAppViewModel.swift in Sources */,
 				9E9CBC7228AE76DB00852A0C /* HTTPClientProtocol.swift in Sources */,
 				9E9CBC8528AE838900852A0C /* RequestManagerProtocol.swift in Sources */,
-				9E9CBC5B28AE745E00852A0C /* ContentView.swift in Sources */,
+				9E9CBC5B28AE745E00852A0C /* CityWeatherView.swift in Sources */,
 				9E9CBC9128AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift in Sources */,
+				9E9CBC9A28AE987B00852A0C /* WeatherCardView.swift in Sources */,
 				9E9CBC7F28AE808D00852A0C /* RequestManager.swift in Sources */,
 				9E9CBC7B28AE7EF500852A0C /* HTTPResponse.swift in Sources */,
+				9E9CBC9C28AECFA800852A0C /* WeatherCardViewItemView.swift in Sources */,
 				9E9CBC8728AE85F600852A0C /* OpenWeatherMapRequests.swift in Sources */,
 				9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */,
 				9E9CBC9328AE925700852A0C /* RequestInterceptorProtocol.swift in Sources */,
