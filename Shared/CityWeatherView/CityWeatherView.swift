@@ -50,7 +50,6 @@ struct CityWeatherView: View {
             }
         }
         .navigationBarTitle(Text(viewModel.location?.name ?? ""))
-//        .onAppear { Task { await viewModel.appear() } }
         .task { await viewModel.appear() }
     }
 }
@@ -59,7 +58,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 
         NavigationView {
-//            CityWeatherView(viewModel: <#CityWeatherViewModel#>, cityName: "Bangkok")
         }
     }
 }

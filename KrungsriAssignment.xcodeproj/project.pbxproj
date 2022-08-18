@@ -208,10 +208,26 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBC3228AE745D00852A0C /* CityWeatherView.swift */,
-				9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */,
-				9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */,
+				9E9CBC9D28AED9EB00852A0C /* Subviews */,
 			);
 			path = CityWeatherView;
+			sourceTree = "<group>";
+		};
+		9E9CBC9D28AED9EB00852A0C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */,
+				9E9CBC9E28AED9F300852A0C /* Subviews */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		9E9CBC9E28AED9F300852A0C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
