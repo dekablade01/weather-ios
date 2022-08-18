@@ -28,7 +28,7 @@ extension Location {
     struct Weather: Decodable {
         let main: String
         let description: String
-        let icon: String
+        private let icon: String
         var iconURL: URL { URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")! }
     }
     

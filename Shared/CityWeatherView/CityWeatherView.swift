@@ -6,47 +6,33 @@
 //
 
 import SwiftUI
-protocol CityWeatherViewModelProtocol {
-    
-    func appear() async
-}
-
-final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol{
-  
-    private let requestManager: RequestManagerProtocol
-    private var cityName: String
-    @Published private(set) var location: Location?
-    init(cityName: String, requestManager: RequestManagerProtocol) {
-        self.cityName = cityName
-        self.requestManager = requestManager
-    }
-    
-    func appear() async {
-    
-        do {
-            location = try await requestManager.request(request: .weather(for: "Bangkok"))
-        } catch {
-            print(error)
-        }
-    }
-    
-}
 
 struct CityWeatherView: View {
     
-    @StateObject var viewModel: CityWeatherViewModel
+    @StateObject private var viewModel: CityWeatherViewModel
+    
+    init(viewModel: CityWeatherViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         ScrollView {
             VStack {
                 WeatherCardView(
-                    weatherIconURL: viewModel.location?.weather.first.map(\.iconURL),
+                    weatherIconURL: viewModel.location?.weather.first.map { $0.iconURL },
                     weatherDescription: viewModel.location?.name ?? "",
                     temperature: viewModel.location?.main.temp ?? 0,
                     humidity: viewModel.location?.main.humidity ?? 0,
                     windSpeed: viewModel.location?.wind.speed ?? 0
                 )
                 Spacer()
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup {
+                Button(action: viewModel.searchDidTap) {
+                    Image(systemName: "magnifyingglass")
+                }
             }
         }
         .navigationBarTitle(Text(viewModel.location?.name ?? ""))

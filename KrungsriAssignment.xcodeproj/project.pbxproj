@@ -29,6 +29,7 @@
 		9E9CBC9728AE930500852A0C /* KrungsriAssignmentAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */; };
 		9E9CBC9A28AE987B00852A0C /* WeatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */; };
 		9E9CBC9C28AECFA800852A0C /* WeatherCardViewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */; };
+		9E9CBCA028AEDD2400852A0C /* CityWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9F28AEDD2400852A0C /* CityWeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrungsriAssignmentAppViewModel.swift; sourceTree = "<group>"; };
 		9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardView.swift; sourceTree = "<group>"; };
 		9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardViewItemView.swift; sourceTree = "<group>"; };
+		9E9CBC9F28AEDD2400852A0C /* CityWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBC3228AE745D00852A0C /* CityWeatherView.swift */,
+				9E9CBC9F28AEDD2400852A0C /* CityWeatherViewModel.swift */,
 				9E9CBC9D28AED9EB00852A0C /* Subviews */,
 			);
 			path = CityWeatherView;
@@ -331,6 +334,7 @@
 			files = (
 				9E9CBC7928AE78ED00852A0C /* URLRequestConvertible.swift in Sources */,
 				9E9CBC8128AE815D00852A0C /* URLConvertible.swift in Sources */,
+				9E9CBCA028AEDD2400852A0C /* CityWeatherViewModel.swift in Sources */,
 				9E9CBC9728AE930500852A0C /* KrungsriAssignmentAppViewModel.swift in Sources */,
 				9E9CBC7228AE76DB00852A0C /* HTTPClientProtocol.swift in Sources */,
 				9E9CBC8528AE838900852A0C /* RequestManagerProtocol.swift in Sources */,
