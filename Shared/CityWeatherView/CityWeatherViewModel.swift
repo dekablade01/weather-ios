@@ -11,7 +11,8 @@ protocol CityWeatherViewModelProtocol: ObservableObject {
     
     func appear() async
     
-    func searchDidTap()
+    func search(city name: String) async
+    
 }
 
 final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol {
@@ -26,16 +27,16 @@ final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol
     }
     
     func appear() async {
+        await search(city: cityName)
+      
+    }
     
+    func search(city name: String) async {
         do {
-            location = try await requestManager.request(request: .weather(for: "Bangkok"))
+            location = try await requestManager.request(request: .weather(for: name))
         } catch {
             print(error)
         }
-    }
-    
-    func searchDidTap() {
-        
     }
     
     
