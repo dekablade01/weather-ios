@@ -12,6 +12,11 @@
 		9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */; };
 		9E9CBC5B28AE745E00852A0C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3228AE745D00852A0C /* ContentView.swift */; };
 		9E9CBC5D28AE745E00852A0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3328AE745D00852A0C /* Assets.xcassets */; };
+		9E9CBC6F28AE76CD00852A0C /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC6E28AE76CD00852A0C /* HTTPClient.swift */; };
+		9E9CBC7228AE76DB00852A0C /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC7128AE76DB00852A0C /* HTTPClientProtocol.swift */; };
+		9E9CBC7428AE78B000852A0C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC7328AE78B000852A0C /* HTTPMethod.swift */; };
+		9E9CBC7928AE78ED00852A0C /* URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC7828AE78ED00852A0C /* URLRequestConvertible.swift */; };
+		9E9CBC7B28AE7EF500852A0C /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC7A28AE7EF500852A0C /* HTTPResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +38,11 @@
 		9E9CBC4528AE745E00852A0C /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBC4928AE745E00852A0C /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		9E9CBC4B28AE745E00852A0C /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
+		9E9CBC6E28AE76CD00852A0C /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		9E9CBC7128AE76DB00852A0C /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
+		9E9CBC7328AE78B000852A0C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		9E9CBC7828AE78ED00852A0C /* URLRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestConvertible.swift; sourceTree = "<group>"; };
+		9E9CBC7A28AE7EF500852A0C /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,8 @@
 		9E9CBC3028AE745D00852A0C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9E9CBC7528AE78CC00852A0C /* Protocols */,
+				9E9CBC6D28AE76BD00852A0C /* Tools */,
 				9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */,
 				9E9CBC3228AE745D00852A0C /* ContentView.swift */,
 				9E9CBC3328AE745D00852A0C /* Assets.xcassets */,
@@ -97,6 +109,41 @@
 				9E9CBC4B28AE745E00852A0C /* Tests_iOSLaunchTests.swift */,
 			);
 			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		9E9CBC6D28AE76BD00852A0C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC7C28AE7F5C00852A0C /* HTTP */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		9E9CBC7028AE76D000852A0C /* HTTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC6E28AE76CD00852A0C /* HTTPClient.swift */,
+				9E9CBC7128AE76DB00852A0C /* HTTPClientProtocol.swift */,
+			);
+			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		9E9CBC7528AE78CC00852A0C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC7828AE78ED00852A0C /* URLRequestConvertible.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9E9CBC7C28AE7F5C00852A0C /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC7328AE78B000852A0C /* HTTPMethod.swift */,
+				9E9CBC7A28AE7EF500852A0C /* HTTPResponse.swift */,
+				9E9CBC7028AE76D000852A0C /* HTTPClient */,
+			);
+			path = HTTP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,8 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E9CBC7928AE78ED00852A0C /* URLRequestConvertible.swift in Sources */,
+				9E9CBC7228AE76DB00852A0C /* HTTPClientProtocol.swift in Sources */,
 				9E9CBC5B28AE745E00852A0C /* ContentView.swift in Sources */,
+				9E9CBC7B28AE7EF500852A0C /* HTTPResponse.swift in Sources */,
 				9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */,
+				9E9CBC7428AE78B000852A0C /* HTTPMethod.swift in Sources */,
+				9E9CBC6F28AE76CD00852A0C /* HTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
