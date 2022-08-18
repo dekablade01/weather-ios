@@ -8,6 +8,12 @@
 import Foundation
 
 struct OpenWeatherMapRequestInterceptor: RequestInterceptorProtocol {
+
+    private let apiKey: String
+    
+    init(apiKey: String) {
+        self.apiKey = apiKey
+    }
     
     func adapt(_ urlRequest: URLRequest) -> URLRequest {
         guard
