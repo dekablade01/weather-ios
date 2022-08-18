@@ -9,14 +9,13 @@ import SwiftUI
 
 struct WeatherCardView: View {
     
-    let dayOfWeek: String
-    let weatherIconURL: URL
+    let weatherIconURL: URL?
     let weatherDescription: String
     let temperature: Double
     let humidity: Int
+    let windSpeed: Double
     
     var body: some View {
-        
         VStack {
             VStack(spacing: 20.0) {
                 AsyncImage(url: weatherIconURL, transaction: .init(animation: .spring())) {
@@ -35,13 +34,12 @@ struct WeatherCardView: View {
                 Text(weatherDescription)
                     .font(.system(size: 24, weight: .medium, design: .rounded))
                     .padding(.init(top: -40, leading: 0, bottom: 4, trailing: 0))
-                
                 Text("\(String(format: "%.1f", temperature)) °C")
                     .font(.system(size: 80.0, weight: .medium, design: .rounded))
                 Rectangle().frame(height: 1, alignment: .center)
                 HStack(alignment: .top, spacing: 40.0) {
-                    WeatherCardViewItemView(title: "Humidity", value: "100%")
-                    WeatherCardViewItemView(title: "Humidity", value: "100%")
+                    WeatherCardViewItemView(title: "Humidity", value: "\(humidity)%")
+                    WeatherCardViewItemView(title: "Wind Speed", value: String(format: "%.1f m/s", windSpeed))
                 }
             }
             .padding()
@@ -56,23 +54,12 @@ struct WeatherCardView: View {
 struct WeatherCardView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherCardView(
-            dayOfWeek: "Sunday",
             weatherIconURL: URL(string: "https://openweathermap.org/img/wn/10d@2x.png")!,
             weatherDescription: "Broken Cloud",
             temperature: 25.6,
-            humidity: 25
+            humidity: 25,
+            windSpeed: 24
         )
         .previewLayout(.sizeThatFits)
-    }
-}
-
-
-extension Double {
-    /// Rounds the double to decimal places value
-    func rounded(toPlaces places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        print(divisor)
-        print((self * divisor).rounded())
-        return (self * divisor).rounded() / divisor
     }
 }

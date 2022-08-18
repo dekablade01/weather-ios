@@ -6,30 +6,52 @@
 //
 
 import SwiftUI
+protocol CityWeatherViewModelProtocol {
+    
+    func appear() async
+}
 
+final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol{
+  
+    private let requestManager: RequestManagerProtocol
+    private var cityName: String
+    @Published private(set) var location: Location?
+    init(cityName: String, requestManager: RequestManagerProtocol) {
+        self.cityName = cityName
+        self.requestManager = requestManager
+    }
+    
+    func appear() async {
+    
+        do {
+            location = try await requestManager.request(request: .weather(for: "Bangkok"))
+        } catch {
+            print(error)
+        }
+    }
+    
+}
 
 struct CityWeatherView: View {
     
-    let cityName: String
+    @StateObject var viewModel: CityWeatherViewModel
+    
     var body: some View {
-//        ScrollView {
-            
-             VStack {
-                 WeatherCardView(
-                     dayOfWeek: "Sunday",
-                     weatherIconURL: URL(string: "https://openweathermap.org/img/wn/10d@2x.png")!,
-                     weatherDescription: "Broken Cloud",
-                     temperature: 25.6,
-                     humidity: 25
-
-                 )
-                 Spacer()
-
-             }
-             .navigationBarTitle(Text(cityName))
-//             .navigationBarTitleDisplayMode(.inline)
-
-//        }
+        ScrollView {
+            VStack {
+                WeatherCardView(
+                    weatherIconURL: viewModel.location?.weather.first.map(\.iconURL),
+                    weatherDescription: viewModel.location?.name ?? "",
+                    temperature: viewModel.location?.main.temp ?? 0,
+                    humidity: viewModel.location?.main.humidity ?? 0,
+                    windSpeed: viewModel.location?.wind.speed ?? 0
+                )
+                Spacer()
+            }
+        }
+        .navigationBarTitle(Text(viewModel.location?.name ?? ""))
+//        .onAppear { Task { await viewModel.appear() } }
+        .task { await viewModel.appear() }
     }
 }
 
@@ -37,7 +59,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 
         NavigationView {
-            CityWeatherView(cityName: "Bangkok")
+//            CityWeatherView(viewModel: <#CityWeatherViewModel#>, cityName: "Bangkok")
         }
     }
 }

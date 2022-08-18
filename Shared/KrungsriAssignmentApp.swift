@@ -15,7 +15,7 @@ struct KrungsriAssignmentApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                CityWeatherView(cityName: "Bangkok")
+                CityWeatherView(viewModel: .init(cityName: "Bangkok", requestManager: environment.openWeatherRequestManager))
             }
         }
     }

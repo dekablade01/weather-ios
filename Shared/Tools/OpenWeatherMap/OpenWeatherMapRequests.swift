@@ -11,9 +11,9 @@ extension Request {
     
     static func weather(for city: String) -> Request<Location> {
         return .init(
-            url: "https://api.openweathermap.org/data/2.5/weather?appid={API key}",
+            url: "https://api.openweathermap.org/data/2.5/weather",
             method: .get,
-            parameters: .url(["q": city])
+            parameters: .url(["q": city, "units": "metric"])
         )
     }
 }

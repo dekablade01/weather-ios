@@ -20,8 +20,10 @@ final class RequestManager: RequestManagerProtocol {
     func request<T: Decodable>(request: Request<T>) async throws -> T {
         let request = adapters.reduce(try request.asURLRequest()) { request, interceptor in interceptor.adapt(request) }
         switch try await client.send(request).result {
-        case .success(let data): return try JSONDecoder().decode(T.self, from: data)
-        case .failure(let error): throw error
+        case .success(let data):
+            return try JSONDecoder().decode(T.self, from: data)
+        case .failure(let error):
+            throw error
         }
     }
 

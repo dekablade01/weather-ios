@@ -9,11 +9,21 @@ import Foundation
 
 struct Location: Decodable {
     
-    let weather: Weather
-    
+    let weather: [Weather]
+    let name: String
+    let main: Main
+    let wind: Wind
 }
 
 extension Location {
+    
+    struct Wind: Decodable {
+        let speed: Double
+    }
+    struct Main: Decodable {
+        let temp: Double
+        let humidity: Int
+    }
     
     struct Weather: Decodable {
         let main: String
