@@ -24,6 +24,8 @@
 		9E9CBC8728AE85F600852A0C /* OpenWeatherMapRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC8628AE85F600852A0C /* OpenWeatherMapRequests.swift */; };
 		9E9CBC8C28AE887500852A0C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC8B28AE887500852A0C /* Location.swift */; };
 		9E9CBC8F28AE89D500852A0C /* HTTPParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */; };
+		9E9CBC9128AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9028AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift */; };
+		9E9CBC9328AE925700852A0C /* RequestInterceptorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9228AE925700852A0C /* RequestInterceptorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		9E9CBC8628AE85F600852A0C /* OpenWeatherMapRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapRequests.swift; sourceTree = "<group>"; };
 		9E9CBC8B28AE887500852A0C /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPParameters.swift; sourceTree = "<group>"; };
+		9E9CBC9028AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapRequestInterceptor.swift; sourceTree = "<group>"; };
+		9E9CBC9228AE925700852A0C /* RequestInterceptorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBC8228AE837200852A0C /* Request.swift */,
+				9E9CBC9228AE925700852A0C /* RequestInterceptorProtocol.swift */,
 				9E9CBC7E28AE808D00852A0C /* RequestManager.swift */,
 				9E9CBC8428AE838900852A0C /* RequestManagerProtocol.swift */,
 			);
@@ -179,6 +184,7 @@
 			children = (
 				9E9CBC8628AE85F600852A0C /* OpenWeatherMapRequests.swift */,
 				9E9CBC8D28AE888900852A0C /* OpenWeatherMapResponses */,
+				9E9CBC9028AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift */,
 			);
 			path = OpenWeatherMap;
 			sourceTree = "<group>";
@@ -295,10 +301,12 @@
 				9E9CBC7228AE76DB00852A0C /* HTTPClientProtocol.swift in Sources */,
 				9E9CBC8528AE838900852A0C /* RequestManagerProtocol.swift in Sources */,
 				9E9CBC5B28AE745E00852A0C /* ContentView.swift in Sources */,
+				9E9CBC9128AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift in Sources */,
 				9E9CBC7F28AE808D00852A0C /* RequestManager.swift in Sources */,
 				9E9CBC7B28AE7EF500852A0C /* HTTPResponse.swift in Sources */,
 				9E9CBC8728AE85F600852A0C /* OpenWeatherMapRequests.swift in Sources */,
 				9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */,
+				9E9CBC9328AE925700852A0C /* RequestInterceptorProtocol.swift in Sources */,
 				9E9CBC8F28AE89D500852A0C /* HTTPParameters.swift in Sources */,
 				9E9CBC8328AE837200852A0C /* Request.swift in Sources */,
 				9E9CBC8C28AE887500852A0C /* Location.swift in Sources */,
