@@ -54,7 +54,9 @@
 		9E9CBC8028AE815D00852A0C /* URLConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConvertible.swift; sourceTree = "<group>"; };
 		9E9CBC8228AE837200852A0C /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		9E9CBC8428AE838900852A0C /* RequestManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerProtocol.swift; sourceTree = "<group>"; };
+		9E9CBC8628AE85F600852A0C /* OpenWeatherMapRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapRequests.swift; sourceTree = "<group>"; };
 		9E9CBC8B28AE887500852A0C /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		9E9CBC6D28AE76BD00852A0C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9E9CBC8928AE882800852A0C /* OpenWeatherMap */,
 				9E9CBC7D28AE807E00852A0C /* RequestManager */,
 				9E9CBC7C28AE7F5C00852A0C /* HTTP */,
 			);
@@ -154,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBC7328AE78B000852A0C /* HTTPMethod.swift */,
+				9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */,
 				9E9CBC7A28AE7EF500852A0C /* HTTPResponse.swift */,
 				9E9CBC7028AE76D000852A0C /* HTTPClient */,
 			);
@@ -168,6 +172,15 @@
 				9E9CBC8428AE838900852A0C /* RequestManagerProtocol.swift */,
 			);
 			path = RequestManager;
+			sourceTree = "<group>";
+		};
+		9E9CBC8928AE882800852A0C /* OpenWeatherMap */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBC8628AE85F600852A0C /* OpenWeatherMapRequests.swift */,
+				9E9CBC8D28AE888900852A0C /* OpenWeatherMapResponses */,
+			);
+			path = OpenWeatherMap;
 			sourceTree = "<group>";
 		};
 		9E9CBC8D28AE888900852A0C /* OpenWeatherMapResponses */ = {
@@ -284,7 +297,9 @@
 				9E9CBC5B28AE745E00852A0C /* ContentView.swift in Sources */,
 				9E9CBC7F28AE808D00852A0C /* RequestManager.swift in Sources */,
 				9E9CBC7B28AE7EF500852A0C /* HTTPResponse.swift in Sources */,
+				9E9CBC8728AE85F600852A0C /* OpenWeatherMapRequests.swift in Sources */,
 				9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */,
+				9E9CBC8F28AE89D500852A0C /* HTTPParameters.swift in Sources */,
 				9E9CBC8328AE837200852A0C /* Request.swift in Sources */,
 				9E9CBC8C28AE887500852A0C /* Location.swift in Sources */,
 				9E9CBC7428AE78B000852A0C /* HTTPMethod.swift in Sources */,

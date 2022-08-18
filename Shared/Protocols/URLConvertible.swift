@@ -11,3 +11,13 @@ protocol URLConvertible {
     
     func asURL() throws -> URL
 }
+
+extension String: URLConvertible {
+    
+    func asURL() throws -> URL {
+        guard let url = URL(string: self) else {
+            throw NSError()
+        }
+        return url
+    }
+}
