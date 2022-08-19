@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum URLRequestConvertibleError: Error {
+    
+    case isNotConvertible
+}
+
 protocol URLRequestConvertible {
     
     func asURLRequest() throws -> URLRequest

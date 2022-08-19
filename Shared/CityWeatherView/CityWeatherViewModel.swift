@@ -52,4 +52,7 @@ protocol CityWeatherViewModelProtocol: ObservableObject {
         temperatureService.switchUnitType()
     }
     
+    func formattedTemperature(for double: Double? = 0) -> String {
+        TemperatureFormatter().string(for: double ?? 0, with: temperatureService.getCurrentUnit())
+    }
 }

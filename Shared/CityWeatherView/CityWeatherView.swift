@@ -32,7 +32,7 @@ struct CityWeatherView: View {
                                 cityName: viewModel.cityName,
                                 weatherIconURL: viewModel.forecast?.iconURL,
                                 weatherDescription: viewModel.forecast?.weatherDescription ?? "",
-                                temperature: "\(viewModel.forecast?.temperature ?? 0.0) \(viewModel.temperatureService.getCurrentUnit().unit)",
+                                temperature: viewModel.formattedTemperature(for: viewModel.forecast?.temperature),
                                 humidity: viewModel.forecast?.humidity ?? 0
                             )
                             Spacer()
@@ -55,6 +55,7 @@ struct CityWeatherView: View {
             }
         }
         .toolbar {
+      
             ToolbarItemGroup {
                 HStack {
                     Button {
@@ -68,7 +69,6 @@ struct CityWeatherView: View {
                     } label: {
                         Image(systemName: "magnifyingglass")
                     }
-                  
                 }
                 
             }

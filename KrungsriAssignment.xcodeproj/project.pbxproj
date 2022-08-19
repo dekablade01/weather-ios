@@ -37,6 +37,8 @@
 		9E9CBCAD28AFAC3000852A0C /* StorageProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBCAC28AFAC3000852A0C /* StorageProviderProtocol.swift */; };
 		9E9CBCAF28AFAC3D00852A0C /* StorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBCAE28AFAC3D00852A0C /* StorageProvider.swift */; };
 		9E9CBCB228AFB5E300852A0C /* TemperatureUnitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBCB128AFB5E300852A0C /* TemperatureUnitService.swift */; };
+		9E9CBCB428B0064F00852A0C /* FiveDaysForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBCB328B0064F00852A0C /* FiveDaysForecastViewModel.swift */; };
+		9E9CBCB628B006B300852A0C /* TemperatureFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBCB528B006B300852A0C /* TemperatureFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		9E9CBCAC28AFAC3000852A0C /* StorageProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProviderProtocol.swift; sourceTree = "<group>"; };
 		9E9CBCAE28AFAC3D00852A0C /* StorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProvider.swift; sourceTree = "<group>"; };
 		9E9CBCB128AFB5E300852A0C /* TemperatureUnitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitService.swift; sourceTree = "<group>"; };
+		9E9CBCB328B0064F00852A0C /* FiveDaysForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDaysForecastViewModel.swift; sourceTree = "<group>"; };
+		9E9CBCB528B006B300852A0C /* TemperatureFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +120,11 @@
 		9E9CBC3028AE745D00852A0C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9E9CBCA328AEEF5E00852A0C /* FiveDaysForecastView */,
-				9E9CBC9828AE986800852A0C /* CityWeatherView */,
 				9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */,
 				9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */,
 				9E9CBC3328AE745D00852A0C /* Assets.xcassets */,
+				9E9CBC9828AE986800852A0C /* CityWeatherView */,
+				9E9CBCA328AEEF5E00852A0C /* FiveDaysForecastView */,
 				9E9CBC7528AE78CC00852A0C /* Protocols */,
 				9E9CBC6D28AE76BD00852A0C /* Tools */,
 			);
@@ -161,6 +165,7 @@
 				9E9CBC7C28AE7F5C00852A0C /* HTTP */,
 				9E9CBCB028AFAC4000852A0C /* StorageProvider */,
 				9E9CBCB128AFB5E300852A0C /* TemperatureUnitService.swift */,
+				9E9CBCB528B006B300852A0C /* TemperatureFormatter.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBCA428AEEF7200852A0C /* FiveDaysForecastView.swift */,
+				9E9CBCB328B0064F00852A0C /* FiveDaysForecastViewModel.swift */,
 				9E9CBCA628AF86A800852A0C /* Subviews */,
 			);
 			path = FiveDaysForecastView;
@@ -377,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E9CBCB428B0064F00852A0C /* FiveDaysForecastViewModel.swift in Sources */,
 				9E9CBC7928AE78ED00852A0C /* URLRequestConvertible.swift in Sources */,
 				9E9CBC8128AE815D00852A0C /* URLConvertible.swift in Sources */,
 				9E9CBCB228AFB5E300852A0C /* TemperatureUnitService.swift in Sources */,
@@ -400,6 +407,7 @@
 				9E9CBC8F28AE89D500852A0C /* HTTPParameters.swift in Sources */,
 				9E9CBC8328AE837200852A0C /* Request.swift in Sources */,
 				9E9CBC8C28AE887500852A0C /* WeatherResponse.swift in Sources */,
+				9E9CBCB628B006B300852A0C /* TemperatureFormatter.swift in Sources */,
 				9E9CBC7428AE78B000852A0C /* HTTPMethod.swift in Sources */,
 				9E9CBC6F28AE76CD00852A0C /* HTTPClient.swift in Sources */,
 				9E9CBCAB28AF8CDE00852A0C /* ForecastResponse.swift in Sources */,

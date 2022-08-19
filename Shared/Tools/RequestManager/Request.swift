@@ -23,7 +23,9 @@ struct Request<T>: URLRequestConvertible {
         var urlComponent = URLComponents(string: try url.asURL().absoluteString)
         urlComponent?.queryItems = parameters.queryItems
         
-        guard let url = urlComponent?.url else { throw fatalError("eee") }
+        guard let url = urlComponent?.url else {
+            throw URLRequestConvertibleError.isNotConvertible
+        }
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
