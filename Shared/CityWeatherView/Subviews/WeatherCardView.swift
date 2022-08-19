@@ -52,6 +52,7 @@ struct WeatherCardView: View {
 }
 
 struct WeatherCardView_Previews: PreviewProvider {
+    
     static var previews: some View {
         WeatherCardView(
             weatherIconURL: URL(string: "https://openweathermap.org/img/wn/10d@2x.png")!,
