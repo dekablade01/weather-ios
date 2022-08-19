@@ -15,7 +15,13 @@ struct KrungsriAssignmentApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                CityWeatherView(viewModel: .init(cityName: "Bangkok", requestManager: environment.openWeatherRequestManager))
+                CityWeatherView(
+                    viewModel: .init(
+                        cityName: "Bangkok",
+                        requestManager: environment.openWeatherRequestManager,
+                        temperatureService: TemperatureUnitService(storageProvider: environment.storageService)
+                    )
+                )
             }
         }
     }

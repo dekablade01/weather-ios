@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct WeatherCardView: View {
-    
+    let cityName: String
     let weatherIconURL: URL?
     let weatherDescription: String
-    let temperature: Double
+    let temperature: String
     let humidity: Int
-    let windSpeed: Double
     
     var body: some View {
         VStack {
             VStack(spacing: 20.0) {
+                Text(cityName)
+                    .font(.system(size: 48.0, weight: .medium, design: .rounded))
+
                 AsyncImage(url: weatherIconURL, transaction: .init(animation: .spring())) {
                     switch $0 {
                     case .empty:
@@ -32,14 +34,14 @@ struct WeatherCardView: View {
                 }
                 .frame(width: 120, height: 120)
                 Text(weatherDescription)
-                    .font(.system(size: 24, weight: .medium, design: .rounded))
+                    .font(.system(size: 36.0, weight: .medium, design: .rounded))
                     .padding(.init(top: -40, leading: 0, bottom: 4, trailing: 0))
-                Text("\(String(format: "%.1f", temperature)) °C")
+                Text(temperature)
                     .font(.system(size: 80.0, weight: .medium, design: .rounded))
                 Rectangle().frame(height: 1, alignment: .center)
                 HStack(alignment: .top, spacing: 40.0) {
                     WeatherCardViewItemView(title: "Humidity", value: "\(humidity)%")
-                    WeatherCardViewItemView(title: "Wind Speed", value: String(format: "%.1f m/s", windSpeed))
+
                 }
             }
             .padding()
@@ -55,11 +57,11 @@ struct WeatherCardView_Previews: PreviewProvider {
     
     static var previews: some View {
         WeatherCardView(
+            cityName: "Bangkok",
             weatherIconURL: URL(string: "https://openweathermap.org/img/wn/10d@2x.png")!,
             weatherDescription: "Broken Cloud",
-            temperature: 25.6,
-            humidity: 25,
-            windSpeed: 24
+            temperature: "25.6 C",
+            humidity: 25
         )
         .previewLayout(.sizeThatFits)
     }

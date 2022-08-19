@@ -13,7 +13,7 @@ extension Request {
         return .init(
             url: "https://api.openweathermap.org/data/2.5/weather",
             method: .get,
-            parameters: .url(["q": city, "units": "metric"])
+            parameters: .url(["q": city])
         )
     }
     
@@ -21,7 +21,7 @@ extension Request {
         return .init(
             url: "https://api.openweathermap.org/data/2.5/forecast",
             method: .get,
-            parameters: .url(["q": city, "units": "metric"])
+            parameters: .url(["q": city])
         )
     }
 }

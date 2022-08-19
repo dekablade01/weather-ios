@@ -9,35 +9,47 @@ import Foundation
 
 protocol CityWeatherViewModelProtocol: ObservableObject {
     
-    func appear() async
-    
-    func search(city name: String) async
-    
+    func fetch() async
+        
 }
 
 @MainActor final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol {
   
     let requestManager: RequestManagerProtocol
     private var _cityName: String
-    var cityName: String { location?.name ?? _cityName }
-    @Published private(set) var location: Forecast?
-    init(cityName: String, requestManager: RequestManagerProtocol) {
+    var cityName: String { forecast?.name ?? _cityName }
+    let temperatureService: TemperatureUnitServiceProtocol
+    var nextTemperatureUnitName: String {
+        temperatureService.nextUnitType().rawValue.capitalized
+    }
+    @Published private(set) var forecast: Forecast?
+    @Published var currentSearch = ""
+    init(
+        cityName: String,
+        requestManager: RequestManagerProtocol,
+        temperatureService: TemperatureUnitServiceProtocol
+    ) {
         self._cityName = cityName
         self.requestManager = requestManager
+        self.temperatureService = temperatureService
     }
     
-    func appear() async {
-        await search(city: _cityName)
-      
+    func fetch() async {
+        await search(city: currentSearch.isEmpty ? _cityName : currentSearch)
     }
     
-    func search(city name: String) async {
+    private func search(city name: String) async {
         do {
-            location = try await requestManager.request(request: .weather(for: name)).asLocation
+            forecast = try await requestManager.request(request: .weather(for: name))
+                .asForecast
         } catch {
             print(error)
         }
+        currentSearch = ""
     }
     
+    func switchTemperatureUnit() {
+        temperatureService.switchUnitType()
+    }
     
 }

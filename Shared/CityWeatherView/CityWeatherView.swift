@@ -11,42 +11,43 @@ struct CityWeatherView: View {
     
     @StateObject private var viewModel: CityWeatherViewModel
     @State private var isOpeningSearchDialog = false
-    @State private var currentSearch = ""
     
     init(viewModel: CityWeatherViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        
-        
         ZStack {
             ScrollView {
                 VStack {
                     NavigationLink(
                         destination: FiveDaysForecastView(
-                            viewModel: .init(cityName: viewModel.cityName, requestManager: viewModel.requestManager)),
+                            viewModel: .init(
+                                cityName: viewModel.cityName,
+                                requestManager: viewModel.requestManager,
+                                temperatureService: viewModel.temperatureService
+                            )),
                         label: {
                             WeatherCardView(
-                                weatherIconURL: viewModel.location?.iconURL,
-                                weatherDescription: viewModel.location?.name ?? "",
-                                temperature: viewModel.location?.temperature ?? 0,
-                                humidity: viewModel.location?.humidity ?? 0,
-                                windSpeed: viewModel.location?.windSpeed ?? 0
+                                cityName: viewModel.cityName,
+                                weatherIconURL: viewModel.forecast?.iconURL,
+                                weatherDescription: viewModel.forecast?.weatherDescription ?? "",
+                                temperature: "\(viewModel.forecast?.temperature ?? 0.0) \(viewModel.temperatureService.getCurrentUnit().unit)",
+                                humidity: viewModel.forecast?.humidity ?? 0
                             )
                             Spacer()
                         }
-                    ).disabled(isOpeningSearchDialog)
+                    )
+                    .disabled(isOpeningSearchDialog)
                 }
             }
             if isOpeningSearchDialog {
                 SearchCardView(
-                    text: $currentSearch,
+                    text: $viewModel.currentSearch,
                     onSearch: {
-                        Task {
-                            await viewModel.search(city: currentSearch)
-                            currentSearch = ""
-                            withAnimation { isOpeningSearchDialog = false }
+                        Task { await viewModel.fetch() }
+                        withAnimation {
+                            isOpeningSearchDialog = false
                         }
                     },
                     onCancel: { withAnimation { isOpeningSearchDialog = false } }
@@ -55,16 +56,25 @@ struct CityWeatherView: View {
         }
         .toolbar {
             ToolbarItemGroup {
-                Button {
-                    withAnimation { isOpeningSearchDialog.toggle() }
-                } label: {
-                    Image(systemName: "magnifyingglass")
+                HStack {
+                    Button {
+                        viewModel.switchTemperatureUnit()
+                        Task { await viewModel.fetch() }
+                    } label: {
+                        Text(viewModel.nextTemperatureUnitName)
+                    }
+                    Button {
+                        withAnimation { isOpeningSearchDialog.toggle() }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                  
                 }
                 
             }
         }
         .navigationBarTitle(Text("Weather"))
-        .task { await viewModel.appear() }
+        .task { await viewModel.fetch() }
     }
        
     
@@ -74,6 +84,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
         NavigationView {
+    
         }
     }
 }

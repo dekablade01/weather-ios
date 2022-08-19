@@ -10,10 +10,16 @@ import Foundation
 final class Environment {
     
     let openWeatherRequestManager: RequestManagerProtocol
+    let storageService: StorageProviderProtocol
     
     init() {
         let client = HTTPClient(session: .shared)
-        let openWeatherInterceptor = OpenWeatherMapRequestInterceptor(apiKey: "9d28603867b48a09484cedbd79d412af")
+        storageService = StorageProvider(container: UserDefaults.standard)
+
+        let openWeatherInterceptor = OpenWeatherMapRequestInterceptor(
+            apiKey: "9d28603867b48a09484cedbd79d412af",
+            tempUnitService: TemperatureUnitService(storageProvider: storageService))
+        
         openWeatherRequestManager = RequestManager(
             client: client,
             adapters: [openWeatherInterceptor]

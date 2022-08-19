@@ -12,7 +12,7 @@ struct FiveDaysForecastItemView: View {
     let imageURL: URL?
     let weatherDesc: String
     let dateString: String
-    let temperature: Int
+    let temperature: String
     
     var body: some View {
     
@@ -64,9 +64,8 @@ struct FiveDaysForecastItemView_Previews: PreviewProvider {
             imageURL: URL(string: "https://openweathermap.org/img/wn/04d@2x.png"),
             weatherDesc: "Lightning",
             dateString: "2020-07-10 15:00:00",
-            temperature: 30
+            temperature: "30 C"
         )
-  
         .previewLayout(.sizeThatFits)
     }
 

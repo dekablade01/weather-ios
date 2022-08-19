@@ -20,11 +20,24 @@ struct WeatherCardViewItemView: View {
                 Text(value)
                     .font(.system(size: 20.0, weight: .bold, design: .rounded))
             }
+            
             .padding()
             .foregroundColor(.green)
-            .background(.white)
-            .cornerRadius(12.0)
+            
+
         }
+        .frame(maxWidth: .infinity, alignment: .center)
+        .background(.white)
+        .cornerRadius(12.0)
+
+
     }
 }
 
+
+struct WeatherCardViewItemView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        WeatherCardViewItemView(title: "hello", value: "world")
+    }
+}

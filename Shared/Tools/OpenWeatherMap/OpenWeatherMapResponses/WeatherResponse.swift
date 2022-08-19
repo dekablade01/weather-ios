@@ -8,7 +8,7 @@
 import Foundation
 
 struct Forecast: Identifiable {
-    
+
     let id = UUID().uuidString
     
     let name: String
@@ -35,6 +35,16 @@ struct Forecast: Identifiable {
         self.weatherDescription = weather.description
         self.date = date
     }
+    
+    init(name: String, windSpeed: Double, temperature: Double, humidity: Int, iconURL: URL?, weatherDescription: String, date: Date) {
+        self.name = name
+        self.windSpeed = windSpeed
+        self.temperature = temperature
+        self.humidity = humidity
+        self.iconURL = iconURL
+        self.weatherDescription = weatherDescription
+        self.date = date
+    }
 
 }
 
@@ -45,7 +55,7 @@ struct WeatherResponse: Decodable {
     let main: Main
     let wind: Wind
 
-    var asLocation: Forecast? {
+    var asForecast: Forecast? {
         return Forecast(
             name: name,
             weather: weather,
