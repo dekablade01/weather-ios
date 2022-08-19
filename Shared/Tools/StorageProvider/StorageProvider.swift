@@ -7,36 +7,24 @@
 
 import Foundation
 
-protocol UserDefaultsProtocol {
+
+
+protocol StorageProviderProtocol {
     
-    func value(forKey: String) -> Any?
-    func set(_ value: Any?, forKey key: String)
+    func value<T>(for key: StorageKeys<T>) -> T?
+    
+    func set<T>(_ value: T?, for key: StorageKeys<T>)
 }
 
-extension UserDefaults: UserDefaultsProtocol { }
-
-struct StorageKeys<T> {
-    
-    let key: String
-    
-    static var cityNames: StorageKeys<[String]> {
-        .init(key: "city_names")
-    }
-    
-    static var temperatureDegreeUnit: StorageKeys<String> {
-        .init(key: "temperature_degree_unit")
-    }
-
-}
 final class StorageProvider: StorageProviderProtocol {
     
-    private let container: UserDefaultsProtocol
+    private let container: ContainerProtocol
 
-    init(container: UserDefaultsProtocol = UserDefaults.standard) {
+    init(container: ContainerProtocol = UserDefaults.standard) {
         self.container = container
     }
   
-    func getValue<T>(for key: StorageKeys<T>) -> T? {
+    func value<T>(for key: StorageKeys<T>) -> T? {
         return container.value(forKey: key.key) as? T
     }
     

@@ -7,6 +7,12 @@
 
 import Foundation
 
+protocol RequestManagerProtocol {
+    
+    func request<T: Decodable>(request: Request<T>) async throws -> T
+}
+
+
 final class RequestManager: RequestManagerProtocol {
     
     private let client: HTTPClientProtocol
