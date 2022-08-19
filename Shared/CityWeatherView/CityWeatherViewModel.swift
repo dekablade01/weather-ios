@@ -18,16 +18,16 @@ protocol CityWeatherViewModelProtocol: ObservableObject {
 @MainActor final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol {
   
     let requestManager: RequestManagerProtocol
-    private var cityName: String
-
+    private var _cityName: String
+    var cityName: String { location?.name ?? _cityName }
     @Published private(set) var location: Forecast?
     init(cityName: String, requestManager: RequestManagerProtocol) {
-        self.cityName = cityName
+        self._cityName = cityName
         self.requestManager = requestManager
     }
     
     func appear() async {
-        await search(city: cityName)
+        await search(city: _cityName)
       
     }
     

@@ -19,36 +19,38 @@ struct CityWeatherView: View {
     
     var body: some View {
         
-        NavigationLink(destination: FiveDaysForecastView(
-            viewModel: .init(cityName: viewModel.location!.name, requestManager: viewModel.requestManager))
-        )
-        {
-            ZStack {
-                ScrollView {
-                    VStack {
-                        WeatherCardView(
-                            weatherIconURL: viewModel.location?.iconURL,
-                            weatherDescription: viewModel.location?.name ?? "",
-                            temperature: viewModel.location?.temperature ?? 0,
-                            humidity: viewModel.location?.humidity ?? 0,
-                            windSpeed: viewModel.location?.windSpeed ?? 0
-                        )
-                        Spacer()
-                    }
+        
+        ZStack {
+            ScrollView {
+                VStack {
+                    NavigationLink(
+                        destination: FiveDaysForecastView(
+                            viewModel: .init(cityName: viewModel.cityName, requestManager: viewModel.requestManager)),
+                        label: {
+                            WeatherCardView(
+                                weatherIconURL: viewModel.location?.iconURL,
+                                weatherDescription: viewModel.location?.name ?? "",
+                                temperature: viewModel.location?.temperature ?? 0,
+                                humidity: viewModel.location?.humidity ?? 0,
+                                windSpeed: viewModel.location?.windSpeed ?? 0
+                            )
+                            Spacer()
+                        }
+                    ).disabled(isOpeningSearchDialog)
                 }
-                if isOpeningSearchDialog {
-                    SearchCardView(
-                        text: $currentSearch,
-                        onSearch: {
-                            Task {
-                                await viewModel.search(city: currentSearch)
-                                currentSearch = ""
-                                withAnimation { isOpeningSearchDialog = false }
-                            }
-                        },
-                        onCancel: { withAnimation { isOpeningSearchDialog = false } }
-                    )
-                }
+            }
+            if isOpeningSearchDialog {
+                SearchCardView(
+                    text: $currentSearch,
+                    onSearch: {
+                        Task {
+                            await viewModel.search(city: currentSearch)
+                            currentSearch = ""
+                            withAnimation { isOpeningSearchDialog = false }
+                        }
+                    },
+                    onCancel: { withAnimation { isOpeningSearchDialog = false } }
+                )
             }
         }
         .toolbar {
@@ -64,6 +66,8 @@ struct CityWeatherView: View {
         .navigationBarTitle(Text("Weather"))
         .task { await viewModel.appear() }
     }
+       
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

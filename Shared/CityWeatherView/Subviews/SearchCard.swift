@@ -42,13 +42,14 @@ struct SearchCardView: View {
                         Button(action: onSearch,
                                label: {
                             Text("Go")
-                                .cornerRadius(12.0)
                                 .frame(width: 64, height: 40)
                                 .font(.system(size: 16.0, weight: .bold, design: .rounded))
 
                         })
+                    
                             .foregroundColor(.white)
                             .background(.green)
+                            .cornerRadius(12.0)
                     }
                 }
                 .padding()

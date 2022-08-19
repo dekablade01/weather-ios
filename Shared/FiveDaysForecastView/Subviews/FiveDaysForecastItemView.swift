@@ -9,9 +9,10 @@ import SwiftUI
 
 struct FiveDaysForecastItemView: View {
     
-    var imageURL: URL?
-    var weatherDesc: String
+    let imageURL: URL?
+    let weatherDesc: String
     let dateString: String
+    let temperature: Int
     
     var body: some View {
     
@@ -30,20 +31,29 @@ struct FiveDaysForecastItemView: View {
                             Image(systemName: "exclamationmark.icloud")
                         }
                     }
+                    Text("\(temperature)")
+                        .padding([.top], -24)
+                        .font(.system(.headline, design: .rounded))
+                        .foregroundColor(.white)
                 }
                 .padding()
             }
             .frame(width: 120.0, height: 100)
             .background(.gray)
             .cornerRadius(12.0)
+            Spacer()
             VStack(alignment: .center) {
                 Text(dateString)
+                    .foregroundColor(.white)
                     .font(.system(.title3, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .fixedSize()
+                    
             }
-//            Spacer()
+            Spacer()
         }
-        .padding()
-        
+        .background(.green)
+        .cornerRadius(12.0)
     }
 }
 
@@ -53,7 +63,8 @@ struct FiveDaysForecastItemView_Previews: PreviewProvider {
         FiveDaysForecastItemView(
             imageURL: URL(string: "https://openweathermap.org/img/wn/04d@2x.png"),
             weatherDesc: "Lightning",
-            dateString: "2020-07-10 15:00:00"
+            dateString: "2020-07-10 15:00:00",
+            temperature: 30
         )
   
         .previewLayout(.sizeThatFits)

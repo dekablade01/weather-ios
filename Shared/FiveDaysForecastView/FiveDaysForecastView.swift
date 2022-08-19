@@ -19,7 +19,7 @@ protocol FiveDaysForecastViewModelProtocol {
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = .init(identifier: "en")
-        dateFormatter.dateFormat = "EEEE d HH:mm"
+        dateFormatter.dateFormat = "EEEE d\nHH:mm"
         return dateFormatter
     }()
 
@@ -56,8 +56,10 @@ struct FiveDaysForecastView: View {
             FiveDaysForecastItemView(
                 imageURL: item.iconURL,
                 weatherDesc: item.weatherDescription,
-                dateString: viewModel.string(from: item.date)
+                dateString: viewModel.string(from: item.date), temperature: 30
             )
+            .listRowInsets(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
+            .listRowSeparator(.hidden)
             
         }
         .task {
