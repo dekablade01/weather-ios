@@ -1,6 +1,6 @@
 //
 //  HTTPClient.swift
-//  KrungsriAssignment (iOS)
+//  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 18/8/22.
 //
@@ -9,9 +9,9 @@ import Foundation
 
 final class HTTPClient: HTTPClientProtocol {
     
-    private let session: URLSession
+    private let session: URLSessionProtocol
     
-    init(session: URLSession) {
+    init(session: URLSessionProtocol) {
         self.session = session
     }
     
@@ -45,7 +45,8 @@ extension HTTPClient {
                     completion(.init(result: .failure(error), urlResponse: response))
                 }
             }
-        ).resume()
+        )
+        .resume()
     }
     
 }

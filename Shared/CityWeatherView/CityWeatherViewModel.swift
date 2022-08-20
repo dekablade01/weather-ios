@@ -1,6 +1,6 @@
 //
 //  CityWeatherViewModel.swift
-//  KrungsriAssignment (iOS)
+//  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 19/8/22.
 //
@@ -21,30 +21,30 @@ protocol CityWeatherViewModelProtocol: ObservableObject {
     var nextTemperatureUnitName: String {
         temperatureService.nextUnitType().rawValue.capitalized
     }
-    private let saveCitiesService: SavedCitiesServiceProtocol
+    private let savedCitiesService: SavedCitiesServiceProtocol
     @Published private(set) var forecasts: [Forecast] = []
     @Published var currentSearch = ""
     
     init(
         requestManager: RequestManagerProtocol,
-        saveCitiesService: SavedCitiesServiceProtocol,
+        savedCitiesService: SavedCitiesServiceProtocol,
         temperatureService: TemperatureUnitServiceProtocol
     ) {
         self.defaultCity = "Bangkok"
         self.requestManager = requestManager
         self.temperatureService = temperatureService
-        self.saveCitiesService = saveCitiesService
+        self.savedCitiesService = savedCitiesService
     }
     
     func fetch() async {
-        if saveCitiesService.cities.isEmpty {
-            saveCitiesService.add(defaultCity)
+        if savedCitiesService.cities.isEmpty {
+            savedCitiesService.add(defaultCity)
         }
 
         if !currentSearch.isEmpty {
-            saveCitiesService.add(currentSearch)
+            savedCitiesService.add(currentSearch)
         }
-        await search(cities: saveCitiesService.cities)
+        await search(cities: savedCitiesService.cities)
     }
     
     private func search(cities names: [String]) async {

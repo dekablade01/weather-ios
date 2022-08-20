@@ -1,6 +1,6 @@
 //
 //  FiveDaysForecastViewModel.swift
-//  KrungsriAssignment (iOS)
+//  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 20/8/22.
 //
@@ -44,7 +44,7 @@ protocol FiveDaysForecastViewModelProtocol {
     }
     
     func string(from date: Date) -> String {
-        return dateFormatter.string(from: date)
+        dateFormatter.string(from: date)
     }
     
     func formattedTemperature(for double: Double? = 0) -> String {

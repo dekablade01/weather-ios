@@ -1,18 +1,11 @@
 //
 //  SavedCitiesService.swift
-//  KrungsriAssignment (iOS)
+//  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 20/8/22.
 //
 
 import Foundation
-
-protocol SavedCitiesServiceProtocol {
-    
-    var cities: [String] { get }
-    
-    func add(_ city: String)
-}
 
 final class SavedCitiesService: SavedCitiesServiceProtocol {
     

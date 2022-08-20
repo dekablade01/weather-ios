@@ -1,6 +1,6 @@
 //
 //  FiveDaysForecastView.swift
-//  KrungsriAssignment (iOS)
+//  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 19/8/22.
 //
@@ -21,7 +21,6 @@ struct FiveDaysForecastView: View {
             )
             .listRowInsets(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
             .listRowSeparator(.hidden)
-            
         }
         .navigationTitle(viewModel.cityName)
         .task { await viewModel.fetch()

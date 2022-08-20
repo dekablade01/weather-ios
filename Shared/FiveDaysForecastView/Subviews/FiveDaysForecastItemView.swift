@@ -1,6 +1,6 @@
 //
 //  FiveDaysForecastItemView.swift
-//  KrungsriAssignment (iOS)
+//  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 19/8/22.
 //
@@ -48,7 +48,6 @@ struct FiveDaysForecastItemView: View {
                     .font(.system(.title3, design: .rounded))
                     .multilineTextAlignment(.center)
                     .fixedSize()
-                    
             }
             Spacer()
         }

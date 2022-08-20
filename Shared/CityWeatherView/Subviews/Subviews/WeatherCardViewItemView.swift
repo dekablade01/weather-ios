@@ -1,6 +1,6 @@
 //
 //  WeatherCardViewItemView.swift
-//  KrungsriAssignment (iOS)
+//  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 19/8/22.
 //
@@ -23,14 +23,10 @@ struct WeatherCardViewItemView: View {
             
             .padding()
             .foregroundColor(.green)
-            
-
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .background(.white)
         .cornerRadius(12.0)
-
-
     }
 }
 
@@ -39,5 +35,6 @@ struct WeatherCardViewItemView_Previews: PreviewProvider {
     
     static var previews: some View {
         WeatherCardViewItemView(title: "hello", value: "world")
+            .previewLayout(.sizeThatFits)
     }
 }

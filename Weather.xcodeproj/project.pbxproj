@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E7AB63A28B1642100A76F2B /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7AB63928B1642100A76F2B /* URLSessionProtocol.swift */; };
+		9E7AB63C28B1663900A76F2B /* WeatherViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7AB63B28B1663900A76F2B /* WeatherViewFactory.swift */; };
+		9E7AB63E28B169B200A76F2B /* SavedCitiesServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7AB63D28B169B200A76F2B /* SavedCitiesServiceProtocol.swift */; };
+		9E7AB64028B169DE00A76F2B /* TemperatureUnitServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7AB63F28B169DE00A76F2B /* TemperatureUnitServiceProtocol.swift */; };
 		9E9CBC4A28AE745E00852A0C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC4928AE745E00852A0C /* Tests_iOS.swift */; };
 		9E9CBC4C28AE745E00852A0C /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC4B28AE745E00852A0C /* Tests_iOSLaunchTests.swift */; };
-		9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */; };
+		9E9CBC5928AE745E00852A0C /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3128AE745D00852A0C /* WeatherApp.swift */; };
 		9E9CBC5B28AE745E00852A0C /* CityWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3228AE745D00852A0C /* CityWeatherView.swift */; };
 		9E9CBC5D28AE745E00852A0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBC3328AE745D00852A0C /* Assets.xcassets */; };
 		9E9CBC6F28AE76CD00852A0C /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC6E28AE76CD00852A0C /* HTTPClient.swift */; };
@@ -25,7 +29,7 @@
 		9E9CBC8F28AE89D500852A0C /* HTTPParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */; };
 		9E9CBC9128AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9028AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift */; };
 		9E9CBC9328AE925700852A0C /* RequestInterceptorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9228AE925700852A0C /* RequestInterceptorProtocol.swift */; };
-		9E9CBC9728AE930500852A0C /* KrungsriAssignmentAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */; };
+		9E9CBC9728AE930500852A0C /* WeatherAppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9628AE930500852A0C /* WeatherAppDependencies.swift */; };
 		9E9CBC9C28AECFA800852A0C /* WeatherCardViewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */; };
 		9E9CBCA028AEDD2400852A0C /* CityWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBC9F28AEDD2400852A0C /* CityWeatherViewModel.swift */; };
 		9E9CBCA228AEE0B600852A0C /* SearchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBCA128AEE0B600852A0C /* SearchCard.swift */; };
@@ -49,15 +53,19 @@
 			containerPortal = 9E9CBC2C28AE745D00852A0C /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9E9CBC3728AE745D00852A0C;
-			remoteInfo = "KrungsriAssignment (iOS)";
+			remoteInfo = "Weather (iOS)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrungsriAssignmentApp.swift; sourceTree = "<group>"; };
+		9E7AB63928B1642100A76F2B /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		9E7AB63B28B1663900A76F2B /* WeatherViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewFactory.swift; sourceTree = "<group>"; };
+		9E7AB63D28B169B200A76F2B /* SavedCitiesServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCitiesServiceProtocol.swift; sourceTree = "<group>"; };
+		9E7AB63F28B169DE00A76F2B /* TemperatureUnitServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitServiceProtocol.swift; sourceTree = "<group>"; };
+		9E9CBC3128AE745D00852A0C /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
 		9E9CBC3228AE745D00852A0C /* CityWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherView.swift; sourceTree = "<group>"; };
 		9E9CBC3328AE745D00852A0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9E9CBC3828AE745E00852A0C /* KrungsriAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrungsriAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9CBC3828AE745E00852A0C /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBC4028AE745E00852A0C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		9E9CBC4528AE745E00852A0C /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBC4928AE745E00852A0C /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
@@ -75,7 +83,7 @@
 		9E9CBC8E28AE89D500852A0C /* HTTPParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPParameters.swift; sourceTree = "<group>"; };
 		9E9CBC9028AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapRequestInterceptor.swift; sourceTree = "<group>"; };
 		9E9CBC9228AE925700852A0C /* RequestInterceptorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptorProtocol.swift; sourceTree = "<group>"; };
-		9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrungsriAssignmentAppViewModel.swift; sourceTree = "<group>"; };
+		9E9CBC9628AE930500852A0C /* WeatherAppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppDependencies.swift; sourceTree = "<group>"; };
 		9E9CBC9928AE987B00852A0C /* WeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardView.swift; sourceTree = "<group>"; };
 		9E9CBC9B28AECFA800852A0C /* WeatherCardViewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardViewItemView.swift; sourceTree = "<group>"; };
 		9E9CBC9F28AEDD2400852A0C /* CityWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -124,8 +132,9 @@
 		9E9CBC3028AE745D00852A0C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9E9CBC3128AE745D00852A0C /* KrungsriAssignmentApp.swift */,
-				9E9CBC9628AE930500852A0C /* KrungsriAssignmentAppViewModel.swift */,
+				9E9CBC3128AE745D00852A0C /* WeatherApp.swift */,
+				9E9CBC9628AE930500852A0C /* WeatherAppDependencies.swift */,
+				9E7AB63B28B1663900A76F2B /* WeatherViewFactory.swift */,
 				9E9CBC3328AE745D00852A0C /* Assets.xcassets */,
 				9E9CBC9828AE986800852A0C /* CityWeatherView */,
 				9E9CBCA328AEEF5E00852A0C /* FiveDaysForecastView */,
@@ -140,7 +149,7 @@
 		9E9CBC3928AE745E00852A0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9E9CBC3828AE745E00852A0C /* KrungsriAssignment.app */,
+				9E9CBC3828AE745E00852A0C /* Weather.app */,
 				9E9CBC4528AE745E00852A0C /* Tests iOS.xctest */,
 			);
 			name = Products;
@@ -186,9 +195,10 @@
 		9E9CBC7528AE78CC00852A0C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				9E9CBCBE28B00A2100852A0C /* ContainerProtocol.swift */,
 				9E9CBC8028AE815D00852A0C /* URLConvertible.swift */,
 				9E9CBC7828AE78ED00852A0C /* URLRequestConvertible.swift */,
-				9E9CBCBE28B00A2100852A0C /* ContainerProtocol.swift */,
+				9E7AB63928B1642100A76F2B /* URLSessionProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -316,8 +326,9 @@
 		9E9CBCC028B00A6200852A0C /* TemperatureUnitService */ = {
 			isa = PBXGroup;
 			children = (
-				9E9CBCB128AFB5E300852A0C /* TemperatureUnitService.swift */,
 				9E9CBCBB28B009B300852A0C /* TemperatureUnit.swift */,
+				9E9CBCB128AFB5E300852A0C /* TemperatureUnitService.swift */,
+				9E7AB63F28B169DE00A76F2B /* TemperatureUnitServiceProtocol.swift */,
 			);
 			path = TemperatureUnitService;
 			sourceTree = "<group>";
@@ -326,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBCC228B00A8B00852A0C /* SavedCitiesService.swift */,
+				9E7AB63D28B169B200A76F2B /* SavedCitiesServiceProtocol.swift */,
 			);
 			path = SavedCitiesService;
 			sourceTree = "<group>";
@@ -333,9 +345,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9E9CBC3728AE745D00852A0C /* KrungsriAssignment (iOS) */ = {
+		9E9CBC3728AE745D00852A0C /* Weather (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E9CBC6128AE745E00852A0C /* Build configuration list for PBXNativeTarget "KrungsriAssignment (iOS)" */;
+			buildConfigurationList = 9E9CBC6128AE745E00852A0C /* Build configuration list for PBXNativeTarget "Weather (iOS)" */;
 			buildPhases = (
 				9E9CBC3428AE745D00852A0C /* Sources */,
 				9E9CBC3528AE745D00852A0C /* Frameworks */,
@@ -345,9 +357,9 @@
 			);
 			dependencies = (
 			);
-			name = "KrungsriAssignment (iOS)";
-			productName = "KrungsriAssignment (iOS)";
-			productReference = 9E9CBC3828AE745E00852A0C /* KrungsriAssignment.app */;
+			name = "Weather (iOS)";
+			productName = "Weather (iOS)";
+			productReference = 9E9CBC3828AE745E00852A0C /* Weather.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9E9CBC4428AE745E00852A0C /* Tests iOS */ = {
@@ -387,7 +399,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9E9CBC2F28AE745D00852A0C /* Build configuration list for PBXProject "KrungsriAssignment" */;
+			buildConfigurationList = 9E9CBC2F28AE745D00852A0C /* Build configuration list for PBXProject "Weather" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -400,7 +412,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9E9CBC3728AE745D00852A0C /* KrungsriAssignment (iOS) */,
+				9E9CBC3728AE745D00852A0C /* Weather (iOS) */,
 				9E9CBC4428AE745E00852A0C /* Tests iOS */,
 			);
 		};
@@ -436,20 +448,22 @@
 				9E9CBCAF28AFAC3D00852A0C /* StorageProvider.swift in Sources */,
 				9E9CBCA028AEDD2400852A0C /* CityWeatherViewModel.swift in Sources */,
 				9E9CBCC328B00A8B00852A0C /* SavedCitiesService.swift in Sources */,
-				9E9CBC9728AE930500852A0C /* KrungsriAssignmentAppViewModel.swift in Sources */,
+				9E9CBC9728AE930500852A0C /* WeatherAppDependencies.swift in Sources */,
 				9E9CBC7228AE76DB00852A0C /* HTTPClientProtocol.swift in Sources */,
 				9E9CBCB828B0082900852A0C /* StorageKeys.swift in Sources */,
+				9E7AB63E28B169B200A76F2B /* SavedCitiesServiceProtocol.swift in Sources */,
 				9E9CBC5B28AE745E00852A0C /* CityWeatherView.swift in Sources */,
 				9E9CBC9128AE8F8000852A0C /* OpenWeatherMapRequestInterceptor.swift in Sources */,
 				9E9CBC7F28AE808D00852A0C /* RequestManager.swift in Sources */,
 				9E9CBC7B28AE7EF500852A0C /* HTTPResponse.swift in Sources */,
+				9E7AB63C28B1663900A76F2B /* WeatherViewFactory.swift in Sources */,
 				9E9CBCA228AEE0B600852A0C /* SearchCard.swift in Sources */,
 				9E9CBCA828AF86CE00852A0C /* FiveDaysForecastItemView.swift in Sources */,
 				9E9CBCA928AF883800852A0C /* WeatherCardView.swift in Sources */,
 				9E9CBCBC28B009B300852A0C /* TemperatureUnit.swift in Sources */,
 				9E9CBC9C28AECFA800852A0C /* WeatherCardViewItemView.swift in Sources */,
 				9E9CBC8728AE85F600852A0C /* OpenWeatherMapRequests.swift in Sources */,
-				9E9CBC5928AE745E00852A0C /* KrungsriAssignmentApp.swift in Sources */,
+				9E9CBC5928AE745E00852A0C /* WeatherApp.swift in Sources */,
 				9E9CBC9328AE925700852A0C /* RequestInterceptorProtocol.swift in Sources */,
 				9E9CBCBF28B00A2100852A0C /* ContainerProtocol.swift in Sources */,
 				9E9CBCA528AEEF7200852A0C /* FiveDaysForecastView.swift in Sources */,
@@ -457,9 +471,11 @@
 				9E9CBC8328AE837200852A0C /* Request.swift in Sources */,
 				9E9CBC8C28AE887500852A0C /* WeatherResponse.swift in Sources */,
 				9E9CBCB628B006B300852A0C /* TemperatureFormatter.swift in Sources */,
+				9E7AB63A28B1642100A76F2B /* URLSessionProtocol.swift in Sources */,
 				9E9CBC7428AE78B000852A0C /* HTTPMethod.swift in Sources */,
 				9E9CBC6F28AE76CD00852A0C /* HTTPClient.swift in Sources */,
 				9E9CBCAB28AF8CDE00852A0C /* ForecastResponse.swift in Sources */,
+				9E7AB64028B169DE00A76F2B /* TemperatureUnitServiceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +493,7 @@
 /* Begin PBXTargetDependency section */
 		9E9CBC4728AE745E00852A0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9E9CBC3728AE745D00852A0C /* KrungsriAssignment (iOS) */;
+			target = 9E9CBC3728AE745D00852A0C /* Weather (iOS) */;
 			targetProxy = 9E9CBC4628AE745E00852A0C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -612,8 +628,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.issarapong.KrungsriAssignment;
-				PRODUCT_NAME = KrungsriAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = me.issarapong.Weather;
+				PRODUCT_NAME = Weather;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -641,8 +657,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.issarapong.KrungsriAssignment;
-				PRODUCT_NAME = KrungsriAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = me.issarapong.Weather;
+				PRODUCT_NAME = Weather;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -666,7 +682,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "KrungsriAssignment (iOS)";
+				TEST_TARGET_NAME = "Weather (iOS)";
 			};
 			name = Debug;
 		};
@@ -685,7 +701,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "KrungsriAssignment (iOS)";
+				TEST_TARGET_NAME = "Weather (iOS)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -693,7 +709,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9E9CBC2F28AE745D00852A0C /* Build configuration list for PBXProject "KrungsriAssignment" */ = {
+		9E9CBC2F28AE745D00852A0C /* Build configuration list for PBXProject "Weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E9CBC5F28AE745E00852A0C /* Debug */,
@@ -702,7 +718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E9CBC6128AE745E00852A0C /* Build configuration list for PBXNativeTarget "KrungsriAssignment (iOS)" */ = {
+		9E9CBC6128AE745E00852A0C /* Build configuration list for PBXNativeTarget "Weather (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E9CBC6228AE745E00852A0C /* Debug */,
