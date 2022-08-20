@@ -14,6 +14,7 @@ struct WeatherCardView: View {
     let temperature: String
     let humidity: Int
     
+    
     var body: some View {
         VStack {
             VStack(spacing: 20.0) {

@@ -17,8 +17,8 @@ struct KrungsriAssignmentApp: App {
             NavigationView {
                 CityWeatherView(
                     viewModel: .init(
-                        cityName: "Bangkok",
                         requestManager: environment.openWeatherRequestManager,
+                        saveCitiesService: SavedCitiesService(storageProvider: environment.storageService),
                         temperatureService: TemperatureUnitService(storageProvider: environment.storageService)
                     )
                 )

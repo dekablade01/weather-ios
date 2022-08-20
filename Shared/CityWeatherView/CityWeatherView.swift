@@ -18,44 +18,50 @@ struct CityWeatherView: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
-                VStack {
-                    NavigationLink(
-                        destination: FiveDaysForecastView(
-                            viewModel: .init(
-                                cityName: viewModel.cityName,
-                                requestManager: viewModel.requestManager,
-                                temperatureService: viewModel.temperatureService
-                            )),
-                        label: {
-                            WeatherCardView(
-                                cityName: viewModel.cityName,
-                                weatherIconURL: viewModel.forecast?.iconURL,
-                                weatherDescription: viewModel.forecast?.weatherDescription ?? "",
-                                temperature: viewModel.formattedTemperature(for: viewModel.forecast?.temperature),
-                                humidity: viewModel.forecast?.humidity ?? 0
+            ScrollViewReader { reader in
+                ScrollView {
+                    VStack {
+                        ForEach(viewModel.forecasts) { forecast in
+                            NavigationLink(
+                                destination: FiveDaysForecastView(
+                                    viewModel: .init(
+                                        cityName: forecast.name,
+                                        requestManager: viewModel.requestManager,
+                                        temperatureService: viewModel.temperatureService
+                                    )
+                                ),
+                                label: {
+                                    WeatherCardView(
+                                        cityName: forecast.name,
+                                        weatherIconURL: forecast.iconURL,
+                                        weatherDescription: forecast.weatherDescription,
+                                        temperature: viewModel.formattedTemperature(for: forecast.temperature),
+                                        humidity: forecast.humidity
+                                    )
+                                }
                             )
-                            Spacer()
+                            .disabled(isOpeningSearchDialog)
                         }
-                    )
-                    .disabled(isOpeningSearchDialog)
+                    }
+                    
                 }
-            }
-            if isOpeningSearchDialog {
-                SearchCardView(
-                    text: $viewModel.currentSearch,
-                    onSearch: {
-                        Task { await viewModel.fetch() }
-                        withAnimation {
-                            isOpeningSearchDialog = false
-                        }
-                    },
-                    onCancel: { withAnimation { isOpeningSearchDialog = false } }
-                )
+                if isOpeningSearchDialog {
+                    SearchCardView(
+                        text: $viewModel.currentSearch,
+                        onSearch: {
+                            Task { await viewModel.fetch() }
+                            withAnimation {
+                                isOpeningSearchDialog = false
+                                reader.scrollTo(viewModel.forecasts.last?.id)
+                            }
+                        },
+                        onCancel: { withAnimation { isOpeningSearchDialog = false } }
+                    )
+                }
+                
             }
         }
         .toolbar {
-      
             ToolbarItemGroup {
                 HStack {
                     Button {
@@ -76,15 +82,13 @@ struct CityWeatherView: View {
         .navigationBarTitle(Text("Weather"))
         .task { await viewModel.fetch() }
     }
-       
-    
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        NavigationView {
-    
-        }
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        NavigationView {
+//
+//        }
+//    }
+//}

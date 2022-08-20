@@ -16,32 +16,42 @@ protocol CityWeatherViewModelProtocol: ObservableObject {
 @MainActor final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol {
   
     let requestManager: RequestManagerProtocol
-    private var _cityName: String
-    var cityName: String { forecast?.name ?? _cityName }
+    private var defaultCity: String
     let temperatureService: TemperatureUnitServiceProtocol
     var nextTemperatureUnitName: String {
         temperatureService.nextUnitType().rawValue.capitalized
     }
-    @Published private(set) var forecast: Forecast?
+    private let saveCitiesService: SavedCitiesServiceProtocol
+    @Published private(set) var forecasts: [Forecast] = []
     @Published var currentSearch = ""
+    
     init(
-        cityName: String,
         requestManager: RequestManagerProtocol,
+        saveCitiesService: SavedCitiesServiceProtocol,
         temperatureService: TemperatureUnitServiceProtocol
     ) {
-        self._cityName = cityName
+        self.defaultCity = "Bangkok"
         self.requestManager = requestManager
         self.temperatureService = temperatureService
+        self.saveCitiesService = saveCitiesService
     }
     
     func fetch() async {
-        await search(city: currentSearch.isEmpty ? _cityName : currentSearch)
+        if saveCitiesService.cities.isEmpty {
+            saveCitiesService.add(defaultCity)
+        }
+
+        if !currentSearch.isEmpty {
+            saveCitiesService.add(currentSearch)
+        }
+        await search(cities: saveCitiesService.cities)
     }
     
-    private func search(city name: String) async {
+    private func search(cities names: [String]) async {
         do {
-            forecast = try await requestManager.request(request: .weather(for: name))
-                .asForecast
+            forecasts = try await names.compactMap {
+                 try await requestManager.request(request: .weather(for: $0)).asForecast
+            }
         } catch {
             print(error)
         }
@@ -54,5 +64,32 @@ protocol CityWeatherViewModelProtocol: ObservableObject {
     
     func formattedTemperature(for double: Double? = 0) -> String {
         TemperatureFormatter().string(for: double ?? 0, with: temperatureService.getCurrentUnit())
+    }
+}
+
+extension Sequence {
+    
+    func compactMap<T>(
+        _ transform: (Element) async throws -> T?
+    ) async rethrows -> [T] {
+        var values = [T?]()
+
+        for element in self {
+            try await values.append(transform(element))
+        }
+
+        return values.compactMap { $0 }
+    }
+    
+    func map<T>(
+        _ transform: (Element) async throws -> T
+    ) async rethrows -> [T] {
+        var values = [T]()
+
+        for element in self {
+            try await values.append(transform(element))
+        }
+
+        return values
     }
 }
