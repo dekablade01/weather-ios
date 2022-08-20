@@ -14,10 +14,10 @@ protocol FiveDaysForecastViewModelProtocol {
 
 @MainActor final class FiveDaysForecastViewModel: ObservableObject, FiveDaysForecastViewModelProtocol {
     
-    @Published private(set) var locations: [Forecast] = []
+    @Published private(set) var forecast: [Forecast] = []
 
     let cityName: String
-    private let requestManager: RequestManagerProtocol
+    private let forecastService: ForecastServiceProtocol
     private let temperatureService: TemperatureUnitServiceProtocol
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -27,17 +27,16 @@ protocol FiveDaysForecastViewModelProtocol {
     }()
     
     
-    init(cityName: String, requestManager: RequestManagerProtocol, temperatureService: TemperatureUnitServiceProtocol) {
+    init(cityName: String, forecastService: ForecastServiceProtocol, temperatureService: TemperatureUnitServiceProtocol) {
         self.cityName = cityName
-        self.requestManager = requestManager
+        self.forecastService = forecastService
         self.temperatureService = temperatureService
     }
     
     func fetch() async {
         do {
-            locations = try await requestManager
-                .request(request: .forecast(for: cityName))
-                .asLocations
+            let _forecast = try await forecastService.fiveDaysForecast(for: cityName)
+            DispatchQueue.main.async { self.forecast = _forecast }
         } catch {
             print(error)
         }

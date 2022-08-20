@@ -12,7 +12,7 @@ struct ForecastResponse: Decodable {
     let city: City
     let list: [Item]
     
-    var asLocations: [Forecast] {
+    var forecasts: [Forecast] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return list.compactMap { item in

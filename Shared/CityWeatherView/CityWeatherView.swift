@@ -10,85 +10,80 @@ import SwiftUI
 struct CityWeatherView: View {
     
     @StateObject private var viewModel: CityWeatherViewModel
-    @State private var isOpeningSearchDialog = false
     
-    init(viewModel: CityWeatherViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    @State private var isOpeningSearchDialog = false
+    @State private var isDeleteDialogPresenting: Bool = false
+    @State private var deletingCity: String? {
+        didSet { isDeleteDialogPresenting = deletingCity != nil }
+    }
+    @State private var currentSearch = ""
+    
+    private let screenFactory: WeatherScreenFactory
+    
+    init(viewFactory: WeatherScreenFactory, viewModel: CityWeatherViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.screenFactory = viewFactory
     }
     
     var body: some View {
         ZStack {
-            ScrollViewReader { reader in
-                ScrollView {
-                    VStack {
-                        ForEach(viewModel.forecasts) { forecast in
-                            NavigationLink(
-                                destination: FiveDaysForecastView(
-                                    viewModel: .init(
-                                        cityName: forecast.name,
-                                        requestManager: viewModel.requestManager,
-                                        temperatureService: viewModel.temperatureService
-                                    )
-                                ),
-                                label: {
-                                    WeatherCardView(
-                                        cityName: forecast.name,
-                                        weatherIconURL: forecast.iconURL,
-                                        weatherDescription: forecast.weatherDescription,
-                                        temperature: viewModel.formattedTemperature(for: forecast.temperature),
-                                        humidity: forecast.humidity
-                                    )
-                                }
-                            )
-                            .disabled(isOpeningSearchDialog)
-                        }
-                    }
-                    
-                }
-                if isOpeningSearchDialog {
-                    SearchCardView(
-                        text: $viewModel.currentSearch,
-                        onSearch: {
-                            Task { await viewModel.fetch() }
-                            withAnimation {
-                                isOpeningSearchDialog = false
-                                reader.scrollTo(viewModel.forecasts.last?.id)
-                            }
-                        },
-                        onCancel: { withAnimation { isOpeningSearchDialog = false } }
+            if !viewModel.weatherModels.isEmpty {
+                List(viewModel.weatherModels, id: \.cityName) { model in
+                    NavigationLink(
+                        destination: screenFactory.fiveDaysForecast(for: model.cityName),
+                        label: { WeatherCardView(model: model) }
                     )
+                    .swipeActions {
+                        Button("Delete") { withAnimation { viewModel.delete(model.cityName) } }
+                            .tint(.red)
+                    }
+                    .disabled(isOpeningSearchDialog)
                 }
-                
+                .listStyle(.inset)
+                .refreshable { viewModel.refresh() }
+            } else {
+                Text("No city")
             }
+            
+            if isOpeningSearchDialog {
+                SearchCardView(
+                    text: $currentSearch,
+                    onSearch: {
+                        withAnimation {
+                            viewModel.addCity(currentSearch)
+                            viewModel.refresh()
+                            isOpeningSearchDialog = false
+                            currentSearch = ""
+                        }
+                    },
+                    onCancel: { withAnimation { isOpeningSearchDialog = false } }
+                )
+            }
+            
         }
         .toolbar {
             ToolbarItemGroup {
                 HStack {
                     Button {
                         viewModel.switchTemperatureUnit()
-                        Task { await viewModel.fetch() }
-                    } label: {
-                        Text(viewModel.nextTemperatureUnitName)
-                    }
+                        viewModel.refresh()
+                    } label: { Text(viewModel.nextTemperatureUnitName) }
                     Button {
                         withAnimation { isOpeningSearchDialog.toggle() }
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                    }
+                    } label: { Image(systemName: "magnifyingglass") }
                 }
                 
             }
         }
         .navigationBarTitle(Text("Weather"))
-        .task { await viewModel.fetch() }
+        .task { viewModel.refresh() }
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        NavigationView {
-//
-//        }
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            WeatherScreenFactory.preview.citiesList()
+        }
+    }
+}

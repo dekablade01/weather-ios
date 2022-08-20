@@ -12,7 +12,7 @@ final class SavedCitiesService: SavedCitiesServiceProtocol {
     private let storageProvider: StorageProviderProtocol
     
     var cities: [String] {
-        storageProvider.value(for: .cityNames) ?? []
+        return storageProvider.value(for: .cityNames) ?? []
     }
     
     init(storageProvider: StorageProviderProtocol) {

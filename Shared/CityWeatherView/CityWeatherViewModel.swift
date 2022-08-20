@@ -7,89 +7,103 @@
 
 import Foundation
 
-protocol CityWeatherViewModelProtocol: ObservableObject {
-    
-    func fetch() async
-        
-}
+protocol CityWeatherViewModelProtocol: ObservableObject { }
 
-@MainActor final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol {
-  
-    let requestManager: RequestManagerProtocol
-    private var defaultCity: String
+final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol {
+    
+    let forecastService: ForecastServiceProtocol
     let temperatureService: TemperatureUnitServiceProtocol
     var nextTemperatureUnitName: String {
         temperatureService.nextUnitType().rawValue.capitalized
     }
     private let savedCitiesService: SavedCitiesServiceProtocol
-    @Published private(set) var forecasts: [Forecast] = []
-    @Published var currentSearch = ""
+    private var forecasts: [Forecast] = [] {
+        didSet { weatherModels = forecasts.map(forecastItem) }
+    }
+    @Published private(set) var weatherModels: [WeatherCardView.Model] = [] {
+        didSet { print(weatherModels) }
+    }
+    
+    @Published var error: Error?
     
     init(
-        requestManager: RequestManagerProtocol,
+        forecastService: ForecastServiceProtocol,
         savedCitiesService: SavedCitiesServiceProtocol,
         temperatureService: TemperatureUnitServiceProtocol
     ) {
-        self.defaultCity = "Bangkok"
-        self.requestManager = requestManager
+        self.forecastService = forecastService
         self.temperatureService = temperatureService
         self.savedCitiesService = savedCitiesService
     }
     
-    func fetch() async {
-        if savedCitiesService.cities.isEmpty {
-            savedCitiesService.add(defaultCity)
-        }
-
-        if !currentSearch.isEmpty {
-            savedCitiesService.add(currentSearch)
-        }
-        await search(cities: savedCitiesService.cities)
+    func addCity(_ city: String) {
+        guard !city.isEmpty else { return }
+        savedCitiesService.add(city)
     }
     
-    private func search(cities names: [String]) async {
-        do {
-            forecasts = try await names.compactMap {
-                 try await requestManager.request(request: .weather(for: $0)).asForecast
-            }
-        } catch {
-            print(error)
-        }
-        currentSearch = ""
+    func refresh() {
+        Task { await search(cities: savedCitiesService.cities) }
+    }
+    
+    func delete(_ cityName: String?) {
+        guard let cityName = cityName else { return }
+        savedCitiesService.remove(cityName)
+        forecasts = forecasts.filter { $0.cityName != cityName }
     }
     
     func switchTemperatureUnit() {
         temperatureService.switchUnitType()
     }
     
-    func formattedTemperature(for double: Double? = 0) -> String {
+    func formattedTemperature(for double: Double?) -> String {
         TemperatureFormatter().string(for: double ?? 0, with: temperatureService.getCurrentUnit())
     }
+    
+    func forecastItem(forecast: Forecast) -> WeatherCardView.Model {
+        return .init(
+            cityName: forecast.cityName,
+            weatherIconURL: forecast.iconURL,
+            weatherDescription: forecast.weatherDescription,
+            temperature: formattedTemperature(for: forecast.temperature),
+            humidity: forecast.humidity
+        )
+    }
+    
+    private func search(cities names: [String]) async {
+        do {
+            let _forecasts = try await forecastService.weatherForecasts(for: names)
+            DispatchQueue.main.async { self.forecasts = _forecasts }
+        } catch {
+            DispatchQueue.main.async { self.error = error }
+        }
+    }
+    
 }
 
 extension Sequence {
     
-    func compactMap<T>(
+    func asyncCompactMap<T>(
         _ transform: (Element) async throws -> T?
     ) async rethrows -> [T] {
-        var values = [T?]()
-
+        var values = [T]()
+        
         for element in self {
-            try await values.append(transform(element))
+            try await transform(element)
+                .map { values.append($0) }
         }
-
-        return values.compactMap { $0 }
+        
+        return values
     }
     
-    func map<T>(
+    func asyncMap<T>(
         _ transform: (Element) async throws -> T
     ) async rethrows -> [T] {
         var values = [T]()
-
+        
         for element in self {
             try await values.append(transform(element))
         }
-
+        
         return values
     }
 }

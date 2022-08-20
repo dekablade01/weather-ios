@@ -5,9 +5,11 @@
 //  Created by Issarapong Poesua on 21/8/22.
 //
 
-import Foundation
+import SwiftUI
 
-@MainActor final class WeatherViewFactory {
+@MainActor final class WeatherScreenFactory {
+    
+    static let preview = WeatherScreenFactory(environment: .init())
     
     private let environment: WeatherApp.Dependencies
     
@@ -15,21 +17,22 @@ import Foundation
         self.environment = environment
     }
     
-    func citiesList() -> CityWeatherView {
+    func citiesList() -> some View {
         CityWeatherView(
+            viewFactory: self,
             viewModel: .init(
-                requestManager: environment.openWeatherRequestManager,
+                forecastService: environment.forecastService,
                 savedCitiesService: environment.savedCitiesService,
                 temperatureService: environment.temperatureUnitService
             )
         )
     }
     
-    func fiveDaysForecast(for city: String) -> FiveDaysForecastView {
+    func fiveDaysForecast(for city: String) -> some View {
         FiveDaysForecastView(
             viewModel: .init(
                 cityName: city,
-                requestManager: self.environment.openWeatherRequestManager,
+                forecastService: self.environment.forecastService,
                 temperatureService: self.environment.temperatureUnitService
             )
         )

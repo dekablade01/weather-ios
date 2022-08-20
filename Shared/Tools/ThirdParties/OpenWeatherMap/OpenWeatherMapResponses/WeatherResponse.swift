@@ -11,7 +11,7 @@ struct Forecast: Identifiable {
 
     let id = UUID().uuidString
     
-    let name: String
+    let cityName: String
     let windSpeed: Double
     let temperature: Double
     let humidity: Int
@@ -19,15 +19,16 @@ struct Forecast: Identifiable {
     let weatherDescription: String
     let date: Date
     
-    init?(
+    init(
         name: String,
         weather: [WeatherResponse.Weather],
         main: WeatherResponse.Main,
         wind: WeatherResponse.Wind,
         date: Date
     ) {
-        guard let weather = weather.first else { return nil }
-        self.name = name
+        let weather = weather[0]
+        
+        self.cityName = name
         self.windSpeed = wind.speed
         self.temperature = main.temp
         self.humidity = main.humidity
@@ -37,7 +38,7 @@ struct Forecast: Identifiable {
     }
     
     init(name: String, windSpeed: Double, temperature: Double, humidity: Int, iconURL: URL?, weatherDescription: String, date: Date) {
-        self.name = name
+        self.cityName = name
         self.windSpeed = windSpeed
         self.temperature = temperature
         self.humidity = humidity
@@ -55,7 +56,7 @@ struct WeatherResponse: Decodable {
     let main: Main
     let wind: Wind
 
-    var asForecast: Forecast? {
+    var asForecast: Forecast {
         return Forecast(
             name: name,
             weather: weather,

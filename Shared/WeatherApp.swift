@@ -11,16 +11,16 @@ import SwiftUI
 struct WeatherApp: App {
     
     private let environment = Dependencies()
-    private let factory: WeatherViewFactory
+    private let screenFactory: WeatherScreenFactory
     
     init() {
-        factory = WeatherViewFactory(environment: environment)
+        screenFactory = WeatherScreenFactory(environment: environment)
     }
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                factory.citiesList()
+                screenFactory.citiesList()
             }
         }
     }

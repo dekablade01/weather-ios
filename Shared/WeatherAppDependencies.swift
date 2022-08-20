@@ -11,11 +11,11 @@ extension WeatherApp {
     
     final class Dependencies {
         
-        let openWeatherRequestManager: RequestManagerProtocol
-        let storageService: StorageProviderProtocol
+        private let openWeatherRequestManager: RequestManagerProtocol
+        private let storageService: StorageProviderProtocol
         let savedCitiesService: SavedCitiesServiceProtocol
         let temperatureUnitService: TemperatureUnitServiceProtocol
-        
+        let forecastService: ForecastServiceProtocol
         init() {
             let client = HTTPClient(session: URLSession.shared)
             storageService = StorageProvider(container: UserDefaults.standard)
@@ -30,6 +30,7 @@ extension WeatherApp {
             )
             temperatureUnitService = TemperatureUnitService(storageProvider: storageService)
             savedCitiesService = SavedCitiesService(storageProvider: storageService)
+            forecastService = ForecastService(requestManager: openWeatherRequestManager)
         }
         
     }

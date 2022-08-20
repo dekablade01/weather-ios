@@ -19,18 +19,7 @@ struct FiveDaysForecastItemView: View {
         HStack(spacing: 12.0) {
             VStack {
                 VStack {
-                    AsyncImage(url: imageURL, transaction: .init(animation: .spring())) {
-                        switch $0 {
-                        case .empty:
-                            Color.clear.opacity(0.0)
-                        case let .success(image):
-                            image.resizable().scaledToFill()
-                        case .failure:
-                            Image(systemName: "exclamationmark.icloud")
-                        @unknown default:
-                            Image(systemName: "exclamationmark.icloud")
-                        }
-                    }
+                    AsyncImageWithAnimation(imageURL: imageURL)
                     Text("\(temperature)")
                         .padding([.top], -24)
                         .font(.system(.headline, design: .rounded))

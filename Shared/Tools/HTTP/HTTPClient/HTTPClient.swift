@@ -10,8 +10,10 @@ import Foundation
 final class HTTPClient: HTTPClientProtocol {
     
     private let session: URLSessionProtocol
-    
-    init(session: URLSessionProtocol) {
+    init(
+
+        session: URLSessionProtocol
+    ) {
         self.session = session
     }
     
@@ -19,7 +21,11 @@ final class HTTPClient: HTTPClientProtocol {
         try await withCheckedThrowingContinuation { [unowned self] con in
             do {
                 let request = try request.asURLRequest()
-                self.makeHTTPRequest(from: request) { con.resume(returning: $0) }
+                self.makeHTTPRequest(from: request) {
+                    print("## http_response: \($0)")
+                    con.resume(returning: $0)
+                    
+                }
             } catch {
                 con.resume(throwing: error)
             }
@@ -47,6 +53,7 @@ extension HTTPClient {
             }
         )
         .resume()
+        
     }
     
 }

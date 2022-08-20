@@ -12,7 +12,7 @@ struct FiveDaysForecastView: View {
     @StateObject var viewModel: FiveDaysForecastViewModel
     
     var body: some View {
-        List((viewModel.locations)) { item in
+        List((viewModel.forecast)) { item in
             FiveDaysForecastItemView(
                 imageURL: item.iconURL,
                 weatherDesc: item.weatherDescription,
