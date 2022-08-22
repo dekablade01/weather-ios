@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum URLConvertibleError: Error {
+enum URLConvertibleError: Error, Equatable {
     
     case isNotConvertible
 }
@@ -24,5 +24,12 @@ extension String: URLConvertible {
             throw URLConvertibleError.isNotConvertible
         }
         return url
+    }
+}
+
+extension URL: URLConvertible {
+    
+    func asURL() throws -> URL {
+        return self
     }
 }

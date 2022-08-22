@@ -7,16 +7,17 @@
 
 import Foundation
 
-class TemperatureFormatter: Formatter {
+final class TemperatureFormatter: Formatter {
     
     var destinationUnit: TemperatureUnit = .celsius
     
     override func string(for obj: Any?) -> String? {
         guard let double = obj as? Double else { return nil }
-        return string(for: double, with: destinationUnit)
+        return String(format: "%.1f \(destinationUnit.unit)", double)
     }
     
-    func string(for double: Double, with unit: TemperatureUnit) -> String {
-        return String(format: "%.1f \(unit.unit)", double)
+    func string(for double: Double, with unit: TemperatureUnit) -> String? {
+        destinationUnit = unit
+        return string(for: double)
     }
 }

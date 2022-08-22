@@ -9,10 +9,10 @@ import Foundation
 
 struct ForecastResponse: Decodable {
     
-    let city: City
-    let list: [Item]
+    private let city: City
+    private let list: [Item]
     
-    var forecasts: [Forecast] {
+    var asForecasts: [Forecast] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return list.compactMap { item in
@@ -20,7 +20,6 @@ struct ForecastResponse: Decodable {
                 name: city.name,
                 weather: item.weather,
                 main: item.main,
-                wind: item.wind,
                 date: dateFormatter.date(from: item.dt_txt) ?? .now
             )
         }

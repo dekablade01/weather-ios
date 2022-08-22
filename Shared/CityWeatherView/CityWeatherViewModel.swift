@@ -7,7 +7,14 @@
 
 import Foundation
 
-protocol CityWeatherViewModelProtocol: ObservableObject { }
+protocol CityWeatherViewModelProtocol {
+    func addCity(_ city: String)
+    func delete(_ cityName: String?)
+    func refresh()
+    func switchTemperatureUnit()
+    func formattedTemperature(for double: Double?) -> String
+    func forecastItem(forecast: Forecast) -> WeatherCardView.Model
+}
 
 final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol {
     
@@ -20,9 +27,7 @@ final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol
     private var forecasts: [Forecast] = [] {
         didSet { weatherModels = forecasts.map(forecastItem) }
     }
-    @Published private(set) var weatherModels: [WeatherCardView.Model] = [] {
-        didSet { print(weatherModels) }
-    }
+    @Published private(set) var weatherModels: [WeatherCardView.Model] = []
     
     @Published var error: Error?
     
@@ -56,7 +61,12 @@ final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol
     }
     
     func formattedTemperature(for double: Double?) -> String {
-        TemperatureFormatter().string(for: double ?? 0, with: temperatureService.getCurrentUnit())
+        guard
+            let double = double,
+            let string = TemperatureFormatter()
+                .string(for: double, with: temperatureService.getCurrentUnit())
+        else { return "" }
+        return string
     }
     
     func forecastItem(forecast: Forecast) -> WeatherCardView.Model {
@@ -68,7 +78,12 @@ final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol
             humidity: forecast.humidity
         )
     }
-    
+}
+
+// MARK: - helpers
+
+extension CityWeatherViewModel {
+
     private func search(cities names: [String]) async {
         do {
             let _forecasts = try await forecastService.weatherForecasts(for: names)
@@ -76,34 +91,5 @@ final class CityWeatherViewModel: ObservableObject, CityWeatherViewModelProtocol
         } catch {
             DispatchQueue.main.async { self.error = error }
         }
-    }
-    
-}
-
-extension Sequence {
-    
-    func asyncCompactMap<T>(
-        _ transform: (Element) async throws -> T?
-    ) async rethrows -> [T] {
-        var values = [T]()
-        
-        for element in self {
-            try await transform(element)
-                .map { values.append($0) }
-        }
-        
-        return values
-    }
-    
-    func asyncMap<T>(
-        _ transform: (Element) async throws -> T
-    ) async rethrows -> [T] {
-        var values = [T]()
-        
-        for element in self {
-            try await values.append(transform(element))
-        }
-        
-        return values
     }
 }

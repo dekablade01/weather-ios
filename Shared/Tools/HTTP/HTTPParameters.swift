@@ -20,3 +20,4 @@ enum HTTPParameters {
     
 }
 
+extension HTTPParameters: Equatable { }

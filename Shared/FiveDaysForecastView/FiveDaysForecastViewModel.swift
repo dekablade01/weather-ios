@@ -12,11 +12,13 @@ protocol FiveDaysForecastViewModelProtocol {
     func fetch() async
 }
 
-@MainActor final class FiveDaysForecastViewModel: ObservableObject, FiveDaysForecastViewModelProtocol {
+final class FiveDaysForecastViewModel: ObservableObject, FiveDaysForecastViewModelProtocol {
     
     @Published private(set) var forecast: [Forecast] = []
-
+    @Published private(set) var error: Error?
+    
     let cityName: String
+    
     private let forecastService: ForecastServiceProtocol
     private let temperatureService: TemperatureUnitServiceProtocol
     private let dateFormatter: DateFormatter = {
@@ -38,7 +40,7 @@ protocol FiveDaysForecastViewModelProtocol {
             let _forecast = try await forecastService.fiveDaysForecast(for: cityName)
             DispatchQueue.main.async { self.forecast = _forecast }
         } catch {
-            print(error)
+            DispatchQueue.main.async { self.error = error }
         }
     }
     
@@ -46,7 +48,12 @@ protocol FiveDaysForecastViewModelProtocol {
         dateFormatter.string(from: date)
     }
     
-    func formattedTemperature(for double: Double? = 0) -> String {
-        TemperatureFormatter().string(for: double ?? 0, with: temperatureService.getCurrentUnit())
+    func formattedTemperature(for double: Double?) -> String {
+        guard
+            let double = double,
+            let string = TemperatureFormatter()
+                .string(for: double, with: temperatureService.getCurrentUnit())
+        else { return "" }
+        return string
     }
 }

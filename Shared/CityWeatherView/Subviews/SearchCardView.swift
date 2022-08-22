@@ -1,5 +1,5 @@
 //
-//  SearchCard.swift
+//  SearchCardView.swift
 //  Weather (iOS)
 //
 //  Created by Issarapong Poesua on 19/8/22.

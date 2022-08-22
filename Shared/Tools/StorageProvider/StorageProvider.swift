@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 protocol StorageProviderProtocol {
     
     func value<T>(for key: StorageKeys<T>) -> T?

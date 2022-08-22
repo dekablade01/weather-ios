@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ForecastService: ForecastServiceProtocol {
+final class ForecastService: ForecastServiceProtocol {
     
     private let requestManger: RequestManagerProtocol
     
@@ -16,19 +16,14 @@ class ForecastService: ForecastServiceProtocol {
     }
     
     func weatherForecasts(for cities: [String]) async throws -> [Forecast] {
-        var responses = [WeatherResponse]()
-        for city in cities {
-            print("city: \(city)")
-            responses.append(try await requestManger.request(request: .weather(for: city)))
+        try await cities.asyncMap {
+            try await requestManger.request(request: OpenWeatherMapRequests.weather(for: $0)).asForecast
         }
-        
-        print("## respones: \(responses)")
-        return responses.map(\.asForecast)
     }
     
     func fiveDaysForecast(for city: String) async throws -> [Forecast] {
         try await requestManger
-            .request(request: .forecast(for: city))
-            .forecasts
+            .request(request: OpenWeatherMapRequests.forecast(for: city))
+            .asForecasts
     }
 }

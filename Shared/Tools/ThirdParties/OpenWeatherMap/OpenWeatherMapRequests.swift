@@ -7,11 +7,15 @@
 
 import Foundation
 
-extension Request {
+struct OpenWeatherMapRequests {
+    
+    private static var baseURL: URL {
+        return URL(string: "https://api.openweathermap.org")!
+    }
     
     static func weather(for city: String) -> Request<WeatherResponse> {
         return .init(
-            url: "https://api.openweathermap.org/data/2.5/weather",
+            url: baseURL.appendingPathComponent("/data/2.5/weather"),
             method: .get,
             parameters: .url(["q": city])
         )
@@ -19,7 +23,7 @@ extension Request {
     
     static func forecast(for city: String) -> Request<ForecastResponse> {
         return .init(
-            url: "https://api.openweathermap.org/data/2.5/forecast",
+            url: baseURL.appendingPathComponent("/data/2.5/forecast"),
             method: .get,
             parameters: .url(["q": city])
         )
