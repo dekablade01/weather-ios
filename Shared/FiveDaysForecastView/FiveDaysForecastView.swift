@@ -23,7 +23,7 @@ struct FiveDaysForecastView: View {
             .listRowSeparator(.hidden)
         }
         .navigationTitle(viewModel.cityName)
-        .task { await viewModel.fetch()
-        }
+        .task { await viewModel.fetch() }
+        .accessibilityIdentifier("five_days_forecast_view")
     }
 }

@@ -12,7 +12,7 @@ struct SearchCardView: View {
     @Binding var text: String
     var onSearch: () -> Void
     var onCancel: () -> Void
-    
+    @FocusState private var isTextFieldFocus
     var body: some View {
         VStack {
             VStack {
@@ -27,6 +27,8 @@ struct SearchCardView: View {
                         .font(.system(size: 28.0, weight: .bold, design: .rounded))
                         .foregroundColor(.black)
                         .padding(.init(top: 20.0, leading: 0, bottom: 0, trailing: 0))
+                        .accessibilityIdentifier("city_text_field")
+                        .focused($isTextFieldFocus)
                     Rectangle()
                         .frame(height: 1.0)
                         .background(.green)
@@ -46,7 +48,7 @@ struct SearchCardView: View {
                                 Text("Go")
                                     .frame(width: 64, height: 40)
                                     .font(.system(size: 16.0, weight: .bold, design: .rounded))
-                                
+                                    .accessibilityIdentifier("go_button")
                             }
                         )
                         .foregroundColor(.white)
@@ -62,7 +64,9 @@ struct SearchCardView: View {
         }
         .padding()
         .foregroundColor(.clear)
+        .onAppear { isTextFieldFocus = true }
     }
+        
 }
 
 

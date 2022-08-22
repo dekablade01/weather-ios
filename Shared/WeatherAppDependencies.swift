@@ -18,10 +18,14 @@ extension WeatherApp {
         let forecastService: ForecastServiceProtocol
         init() {
             let client = HTTPClient(session: URLSession.shared)
-            storageService = StorageProvider(container: UserDefaults.standard)
+            
+            
+            storageService = StorageProvider(
+                container: Constants.storage
+            )
 
             let openWeatherInterceptor = OpenWeatherMapRequestInterceptor(
-                apiKey: "9d28603867b48a09484cedbd79d412af",
+                apiKey: Constants.apiKey,
                 tempUnitService: TemperatureUnitService(storageProvider: storageService))
             
             openWeatherRequestManager = RequestManager(

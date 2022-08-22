@@ -43,6 +43,7 @@ struct CityWeatherView: View {
                 .refreshable { viewModel.refresh() }
             } else {
                 Text("No city")
+                    .accessibilityIdentifier("placeholder_text")
             }
             
             if isOpeningSearchDialog {
@@ -68,9 +69,12 @@ struct CityWeatherView: View {
                         viewModel.switchTemperatureUnit()
                         viewModel.refresh()
                     } label: { Text(viewModel.nextTemperatureUnitName) }
+                        .accessibilityIdentifier("unit_switch_button")
+
                     Button {
                         withAnimation { isOpeningSearchDialog.toggle() }
                     } label: { Image(systemName: "magnifyingglass") }
+                        .accessibilityIdentifier("search_button")
                 }
                 
             }
