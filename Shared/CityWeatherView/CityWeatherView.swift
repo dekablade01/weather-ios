@@ -34,7 +34,12 @@ struct CityWeatherView: View {
                         label: { WeatherCardView(model: model) }
                     )
                     .swipeActions {
-                        Button("Delete") { withAnimation { viewModel.delete(model.cityName) } }
+                        Button("Delete") {
+                            withAnimation {
+                                viewModel.delete(model.cityName)
+                            }
+                            
+                        }
                             .tint(.red)
                     }
                     .disabled(isOpeningSearchDialog)
@@ -57,7 +62,11 @@ struct CityWeatherView: View {
                             currentSearch = ""
                         }
                     },
-                    onCancel: { withAnimation { isOpeningSearchDialog = false } }
+                    onCancel: {
+                        withAnimation {
+                            isOpeningSearchDialog = false
+                        }
+                    }
                 )
             }
             
@@ -68,15 +77,20 @@ struct CityWeatherView: View {
                     Button {
                         viewModel.switchTemperatureUnit()
                         viewModel.refresh()
-                    } label: { Text(viewModel.nextTemperatureUnitName) }
-                        .accessibilityIdentifier("unit_switch_button")
+                    } label: {
+                        Text(viewModel.nextTemperatureUnitName)
+                    }
+                    .accessibilityIdentifier("unit_switch_button")
 
                     Button {
-                        withAnimation { isOpeningSearchDialog.toggle() }
-                    } label: { Image(systemName: "magnifyingglass") }
-                        .accessibilityIdentifier("search_button")
+                        withAnimation {
+                            isOpeningSearchDialog.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .accessibilityIdentifier("search_button")
                 }
-                
             }
         }
         .navigationBarTitle(Text("Weather"))

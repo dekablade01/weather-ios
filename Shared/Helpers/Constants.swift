@@ -17,7 +17,7 @@ struct Constants {
     
     @Credential(
         debug: UserDefaults(suiteName: "-debug")!,
-        testing: UserDefaults(suiteName: "-testing-\(UUID().uuidString)")!,
+        testing: UserDefaults(suiteName: "-testing")!,
         release: UserDefaults(suiteName: "-release")!
     )
     static var storage

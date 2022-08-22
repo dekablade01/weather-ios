@@ -9,6 +9,7 @@ import Foundation
 
 extension WeatherApp {
     
+    
     final class Dependencies {
         
         private let openWeatherRequestManager: RequestManagerProtocol
@@ -19,7 +20,9 @@ extension WeatherApp {
         init() {
             let client = HTTPClient(session: URLSession.shared)
             
-            
+            if ProcessInfo.processInfo.arguments.contains("--reset") {
+                Constants.storage.removeAll()
+            }
             storageService = StorageProvider(
                 container: Constants.storage
             )

@@ -72,6 +72,8 @@
 		9EDBD8EF28B39DB00033C148 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDBD8E928B39BF40033C148 /* Constants.swift */; };
 		9EDBD8F028B39DB30033C148 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDBD8EB28B39BFA0033C148 /* Credentials.swift */; };
 		9EDBD8F128B39DB50033C148 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDBD8ED28B39C2F0033C148 /* Environment.swift */; };
+		9EDBD8F628B3F2170033C148 /* AsyncImageWithAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDBD8F428B3F20B0033C148 /* AsyncImageWithAnimation.swift */; };
+		9EDBD8F928B400520033C148 /* UserDefaults+RemoveAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDBD8F728B3FFFD0033C148 /* UserDefaults+RemoveAll.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,8 @@
 		9EDBD8E928B39BF40033C148 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9EDBD8EB28B39BFA0033C148 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		9EDBD8ED28B39C2F0033C148 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		9EDBD8F428B3F20B0033C148 /* AsyncImageWithAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageWithAnimation.swift; sourceTree = "<group>"; };
+		9EDBD8F728B3FFFD0033C148 /* UserDefaults+RemoveAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+RemoveAll.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,7 @@
 			children = (
 				9E34C44C28B26259004E9FFB /* Result+SuccessFailure.swift */,
 				9EDBD8D228B3939A0033C148 /* Sequence+AsyncMap.swift */,
+				9EDBD8F728B3FFFD0033C148 /* UserDefaults+RemoveAll.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				9E9CBC7528AE78CC00852A0C /* Protocols */,
 				9E9CBCB928B0086400852A0C /* Services */,
 				9E9CBC6D28AE76BD00852A0C /* Tools */,
+				9EDBD8F328B3F1FC0033C148 /* Views */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -595,6 +601,14 @@
 			path = WeatherUITests;
 			sourceTree = "<group>";
 		};
+		9EDBD8F328B3F1FC0033C148 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9EDBD8F428B3F20B0033C148 /* AsyncImageWithAnimation.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -776,9 +790,11 @@
 				9E9CBC9C28AECFA800852A0C /* WeatherCardViewItemView.swift in Sources */,
 				9E9CBC8728AE85F600852A0C /* OpenWeatherMapRequests.swift in Sources */,
 				9EDBD8F028B39DB30033C148 /* Credentials.swift in Sources */,
+				9EDBD8F628B3F2170033C148 /* AsyncImageWithAnimation.swift in Sources */,
 				9EDBD8EF28B39DB00033C148 /* Constants.swift in Sources */,
 				9E9CBC5928AE745E00852A0C /* WeatherApp.swift in Sources */,
 				9EA26AB728B190EE0073CFB1 /* ForecastServiceProtocol.swift in Sources */,
+				9EDBD8F928B400520033C148 /* UserDefaults+RemoveAll.swift in Sources */,
 				9E9CBC9328AE925700852A0C /* RequestInterceptorProtocol.swift in Sources */,
 				9E9CBCBF28B00A2100852A0C /* ContainerProtocol.swift in Sources */,
 				9E9CBCA528AEEF7200852A0C /* FiveDaysForecastView.swift in Sources */,

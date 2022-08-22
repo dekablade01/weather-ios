@@ -11,20 +11,25 @@ class WeatherUITests: XCTestCase {
 
     private var app: XCUIApplication!
     
-    override func setUp() {
-        super.setUp()
-        // UI tests must launch the application that they test.
+    private func launchApp(reset: Bool = true) {
         app = .init()
-        app.launchArguments = ["-ui-tests"]
+        
+        if reset {
+            app.launchArguments.append("--reset")
+        }
+        
         app.launch()
-
     }
     
     func testPlaceholderView() {
+        launchApp()
         XCTAssert(app.staticTexts["placeholder_text"].exists)
     }
+    
+    
 
     func testAddCity() {
+        launchApp()
         addCity("Moscow")
         XCTAssert(app.staticTexts["Moscow"].waitForExistence(timeout: 0.5))
 
@@ -32,7 +37,18 @@ class WeatherUITests: XCTestCase {
         XCTAssert(app.staticTexts["Phuket"].waitForExistence(timeout: 0.5))
     }
     
+    func testAddedCitiesExist() {
+        launchApp()
+        addCity("Moscow")
+        addCity("Phuket")
+        
+        launchApp(reset: false)
+        XCTAssert(app.staticTexts["Moscow"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Phuket"].waitForExistence(timeout: 0.5))
+    }
+    
     func testSwitchingTempUnit() {
+        launchApp()
         var switchButton: XCUIElement { app.buttons["unit_switch_button"] }
 
         addCity("Moscow")
@@ -69,9 +85,12 @@ class WeatherUITests: XCTestCase {
                 .exists
         )
         XCTAssertEqual(switchButton.label, "Fahrenheit")
+        
+        view("Moscow")
     }
     
     func testViewingForecast() {
+        launchApp()
         let city = "Bangkok"
         addCity(city)
         view(city)
